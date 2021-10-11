@@ -96,25 +96,25 @@
 </ul>
 <p>An <strong>operator</strong> is a method that reshapes or connects different channels applying some rules.</p>
 <p>We can write a very simple Nextflow script: save the following piece of code in the <code class="docutils literal notranslate"><span class="pre">test0.nf</span></code> file:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>#!/usr/bin/env nextflow
-// This is a comment
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>#<span class="o">!/</span><span class="nv">usr</span><span class="o">/</span><span class="nv">bin</span><span class="o">/</span><span class="nv">env</span> <span class="nv">nextflow</span>
+<span class="o">//</span> <span class="nv">This</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">comment</span>
 
-/*
- * This is a block of comments
- */
+<span class="cm">/*</span>
+<span class="cm"> * This is a block of comments</span>
+<span class="cm"> */</span>
 
-// This is needed for activating the new DLS2
-nextflow.enable.dsl=2
+<span class="o">//</span> <span class="nv">This</span> <span class="nv">is</span> <span class="nv">needed</span> <span class="k">for</span> <span class="nv">activating</span> <span class="nv">the</span> <span class="nv">new</span> <span class="nv">DLS2</span>
+<span class="nv">nextflow</span>.<span class="nv">enable</span>.<span class="nv">dsl</span><span class="o">=</span><span class="mi">2</span>
 
-//Let&#39;s create a channel from string values
-str = Channel.from(&#39;hello&#39;, &#39;hola&#39;, &#39;bonjour&#39;)
+<span class="o">//</span><span class="nv">Let</span><span class="s1">&#39;</span><span class="s">s create a channel from string values</span>
+<span class="nv">str</span> <span class="o">=</span> <span class="nv">Channel</span>.<span class="nv">from</span><span class="ss">(</span><span class="s1">&#39;</span><span class="s">hello</span><span class="s1">&#39;</span>, <span class="s1">&#39;</span><span class="s">hola</span><span class="s1">&#39;</span>, <span class="s1">&#39;</span><span class="s">bonjour</span><span class="s1">&#39;</span><span class="ss">)</span>
 
-/*
-* Let&#39;s print that channel using the operator view()
-* https://www.nextflow.io/docs/latest/operator.html#view
-*/
+<span class="cm">/*</span>
+<span class="cm">* Let&#39;s print that channel using the operator view()</span>
+<span class="cm">* https://www.nextflow.io/docs/latest/operator.html#view</span>
+<span class="cm">*/</span>
 
-str.view()
+<span class="nv">str</span>.<span class="nv">view</span><span class="ss">()</span>
 </pre></div>
 </div>
 <p>Once the file is saved, execute it with:</p>
