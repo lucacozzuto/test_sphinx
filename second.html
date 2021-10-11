@@ -96,25 +96,25 @@
 </ul>
 <p>An <strong>operator</strong> is a method that reshapes or connects different channels applying some rules.</p>
 <p>We can write a very simple Nextflow script: save the following piece of code in the <code class="docutils literal notranslate"><span class="pre">test0.nf</span></code> file:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env nextflow</span>
-<span class="o">//</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">comment</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>#!/usr/bin/env nextflow
+// This is a comment
 
-<span class="o">/*</span>
- <span class="o">*</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">block</span> <span class="n">of</span> <span class="n">comments</span>
- <span class="o">*/</span>
+/*
+ * This is a block of comments
+ */
 
-<span class="o">//</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">needed</span> <span class="k">for</span> <span class="n">activating</span> <span class="n">the</span> <span class="n">new</span> <span class="n">DLS2</span>
-<span class="n">nextflow</span><span class="o">.</span><span class="n">enable</span><span class="o">.</span><span class="n">dsl</span><span class="o">=</span><span class="mi">2</span>
+// This is needed for activating the new DLS2
+nextflow.enable.dsl=2
 
-<span class="o">//</span><span class="n">Let</span><span class="s1">&#39;s create a channel from string values</span>
-<span class="nb">str</span> <span class="o">=</span> <span class="n">Channel</span><span class="o">.</span><span class="n">from</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;hola&#39;</span><span class="p">,</span> <span class="s1">&#39;bonjour&#39;</span><span class="p">)</span>
+//Let&#39;s create a channel from string values
+str = Channel.from(&#39;hello&#39;, &#39;hola&#39;, &#39;bonjour&#39;)
 
-<span class="o">/*</span>
-<span class="o">*</span> <span class="n">Let</span><span class="s1">&#39;s print that channel using the operator view()</span>
-<span class="o">*</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">nextflow</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">latest</span><span class="o">/</span><span class="n">operator</span><span class="o">.</span><span class="n">html</span><span class="c1">#view</span>
-<span class="o">*/</span>
+/*
+* Let&#39;s print that channel using the operator view()
+* https://www.nextflow.io/docs/latest/operator.html#view
+*/
 
-<span class="nb">str</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>
+str.view()
 </pre></div>
 </div>
 <p>Once the file is saved, execute it with:</p>
