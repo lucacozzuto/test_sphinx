@@ -1,3 +1,3 @@
 GitHub Pages of [lucacozzuto/test_sphinx](https://github.com/lucacozzuto/test_sphinx.git)
 ===
-Sphinx html documentation of [10e3640f](https://github.com/lucacozzuto/test_sphinx/tree/10e3640ff68a1429c6354023621a2df290a51f89)
+Sphinx html documentation of [0b89bcc5](https://github.com/lucacozzuto/test_sphinx/tree/0b89bcc58d7d2a80a7d6166c333cf8d6d864392a)
