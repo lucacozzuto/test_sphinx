@@ -115,7 +115,7 @@ See here [fromFilePairs](https://www.nextflow.io/docs/latest/channel.html#fromfi
 
 ### ANSWER
 
-.. code-block:: java
+.. code-block:: Java
 	#!/usr/bin/env nextflow
 	nextflow.enable.dsl=2
 	/*
