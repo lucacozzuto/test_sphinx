@@ -1,21 +1,42 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
   <title>Second Day &mdash; Sphinx Page GitHub Action  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-    <script src="_static/js/theme.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -23,13 +44,29 @@
     <link rel="prev" title="Second Day" href="second.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+
+   
   <div class="wy-grid-for-nav">
+    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
+          
+
+          
             <a href="index.html" class="icon icon-home"> Sphinx Page GitHub Action
+          
+
+          
           </a>
+
+          
+            
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -37,7 +74,18 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="about.html">About the course</a></li>
 <li class="toctree-l1"><a class="reference internal" href="first.html">First Day</a></li>
@@ -61,34 +109,74 @@
 <li class="toctree-l1"><a class="reference internal" href="fourth.html">First Day</a></li>
 </ul>
 
+            
+          
         </div>
+        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Sphinx Page GitHub Action</a>
+        
       </nav>
 
+
       <div class="wy-nav-content">
+        
         <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
+    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
       <li>Second Day</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
+        
+          
+        
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-             
+            
   <section id="second-day">
-<span id="second-page"></span><h1>Second Day<a class="headerlink" href="#second-day" title="Permalink to this headline"></a></h1>
+<span id="second-page"></span><h1>Second Day<a class="headerlink" href="#second-day" title="Permalink to this headline">¶</a></h1>
 <p>Main concepts about Nextflow.</p>
 <section id="channels-and-operators">
-<h2>Channels and Operators<a class="headerlink" href="#channels-and-operators" title="Permalink to this headline"></a></h2>
+<h2>Channels and Operators<a class="headerlink" href="#channels-and-operators" title="Permalink to this headline">¶</a></h2>
 <p>There are two different types of channels:</p>
 <ul class="simple">
 <li><p>A <strong>queue channel</strong> is a non-blocking unidirectional <a class="reference external" href="https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)">FIFO</a> (First In, First Out) queue which <strong>connects two processes or operators</strong>.</p></li>
@@ -263,7 +351,7 @@ echo ${str_in} in Italian is ciao
 </dd>
 </dl>
 <section id="id33">
-<h3>}<a class="headerlink" href="#id33" title="Permalink to this headline"></a></h3>
+<h3>}<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h3>
 <p>The process can be seen as a function that is composed of:</p>
 <ul class="simple">
 <li><p>An <strong>input</strong> part where the input channels are defined.</p></li>
@@ -308,7 +396,7 @@ result.view()</p>
 </dl>
 </section>
 <section id="id40">
-<h3>}<a class="headerlink" href="#id40" title="Permalink to this headline"></a></h3>
+<h3>}<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h3>
 <p>We can run the script this time sending the execution in the background (with the <cite>-bg</cite> option) and saving the log in the file <cite>log.txt</cite>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">`{bash,</span> <span class="pre">eval=FALSE,</span> <span class="pre">echo=TRUE}</span>
 <span class="pre">nextflow</span> <span class="pre">run</span> <span class="pre">test1.nf</span> <span class="pre">-bg</span> <span class="pre">&gt;</span> <span class="pre">log.txt</span>
@@ -433,7 +521,7 @@ second_pipeline(str)</p>
 </dl>
 </section>
 <section id="id59">
-<h3>}<a class="headerlink" href="#id59" title="Permalink to this headline"></a></h3>
+<h3>}<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h3>
 <p>You can see that with the previous code you can execute two workflows containing the same process. &lt;br&gt;
 We can add the <strong>collect</strong> operator to the second workflow that collects the output from different executions and returns the resulting list <strong>as a sole emission</strong>.</p>
 <p>Let’s run the code:</p>
@@ -540,7 +628,7 @@ out2 = second_pipeline(str)</p>
 </dl>
 </section>
 <section id="id70">
-<h3>}<a class="headerlink" href="#id70" title="Permalink to this headline"></a></h3>
+<h3>}<a class="headerlink" href="#id70" title="Permalink to this headline">¶</a></h3>
 <p>&lt;/details&gt;</p>
 <ul class="simple">
 <li><p>Change the pipeline to use only one process to handle both the cases (either one element or a list).&lt;br&gt; You can choose the elements from a list using the positional keys (i.e. list[0], list[1], etc…)</p></li>
@@ -611,7 +699,7 @@ out2 = second_pipeline(str)</p>
 </dl>
 </section>
 <section id="id81">
-<h3>}<a class="headerlink" href="#id81" title="Permalink to this headline"></a></h3>
+<h3>}<a class="headerlink" href="#id81" title="Permalink to this headline">¶</a></h3>
 <p>&lt;/details&gt;</p>
 <p>## More complex scripts</p>
 <p>We can feed the channel that is generated by a process to another process in the workflow definition. In this way we have a proper pipeline. You can see that we need to escape the variable used by AWK otherwise they will be considered proper Nextflow variables producing an error. So every special character like <strong>$</strong> needs to be escaped (<strong>$</strong>) or you’ll get an error. Sometimes with long an difficult one liners you might want to make a small shell script and call it as an executable. You need to place it in a folder named <strong>bin</strong> inside the pipeline folder. This will be automatically considered from Nextflow as tool in the path.</p>
@@ -679,7 +767,7 @@ rev_single_seq      = reverseSequence(splitted_seq)</p>
 </div></blockquote>
 </section>
 <section id="id92">
-<h3>}<a class="headerlink" href="#id92" title="Permalink to this headline"></a></h3>
+<h3>}<a class="headerlink" href="#id92" title="Permalink to this headline">¶</a></h3>
 <p>Here we have two simple processes:</p>
 <ul class="simple">
 <li><p>the former splits the input fasta file into <strong>single sequences</strong>.</p></li>
@@ -804,7 +892,7 @@ flow2(sequences_file)</p>
 </div></blockquote>
 </section>
 <section id="id103">
-<h3>}<a class="headerlink" href="#id103" title="Permalink to this headline"></a></h3>
+<h3>}<a class="headerlink" href="#id103" title="Permalink to this headline">¶</a></h3>
 <p>The first workflow will just run like the previous script, while the second will “flatten” the output of the first process and will launch the second process on each single sequence.</p>
 <p>The <strong>reverseSequence</strong> process of the second workflow will run in parallel if you have enough processors, or if you are running the script in a cluster environment with a scheduler supported by Nextflow.</p>
 <p><code class="docutils literal notranslate"><span class="pre">`{bash,</span> <span class="pre">eval=FALSE,</span> <span class="pre">echo=TRUE}</span>
@@ -847,7 +935,7 @@ cat ${seq} | awk ‘{if ($1~”&gt;”) {print $0} else system(“echo ” $0 �
 </dl>
 </section>
 <section id="id112">
-<h3>}<a class="headerlink" href="#id112" title="Permalink to this headline"></a></h3>
+<h3>}<a class="headerlink" href="#id112" title="Permalink to this headline">¶</a></h3>
 <p>We can also use [<cite>storeDir</cite>](<a class="reference external" href="https://www.nextflow.io/docs/latest/process.html#storedir">https://www.nextflow.io/docs/latest/process.html#storedir</a>) in case we want to have a permanent cache. &lt;br&gt;</p>
 <p>The process is executed only if the output files do not exist in the folder specified by <strong>storeDir</strong>.&lt;br&gt;
 When the output files exist, the process execution is skipped and these files are used as the actual process result.&lt;br&gt;</p>
@@ -940,7 +1028,7 @@ cat ${seq} | AAAAAAA ‘{if ($1~”&gt;”) {print $0} else system(“echo ” $
 </dl>
 </section>
 <section id="id129">
-<h3>}<a class="headerlink" href="#id129" title="Permalink to this headline"></a></h3>
+<h3>}<a class="headerlink" href="#id129" title="Permalink to this headline">¶</a></h3>
 <p>&lt;/details&gt;</p>
 <p>Write the first workflow using pipes. Nextflow DLS2 allows you to use pipes for connecting channels via input / output.
 &lt;br&gt;See the [documentation on pipes](<a class="reference external" href="https://www.nextflow.io/docs/latest/dsl2.html#pipes">https://www.nextflow.io/docs/latest/dsl2.html#pipes</a>).</p>
@@ -957,7 +1045,7 @@ splitSequences(sequences) | reverseSequence | view()</p>
 </div></blockquote>
 </section>
 <section id="id134">
-<h3>}<a class="headerlink" href="#id134" title="Permalink to this headline"></a></h3>
+<h3>}<a class="headerlink" href="#id134" title="Permalink to this headline">¶</a></h3>
 <p>&lt;/details&gt;</p>
 </section>
 </section>
@@ -965,33 +1053,50 @@ splitSequences(sequences) | reverseSequence | view()</p>
 
 
            </div>
+           
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="second.html" class="btn btn-neutral float-left" title="Second Day" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="fourth.html" class="btn btn-neutral float-right" title="First Day" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="second.html" class="btn btn-neutral float-left" title="Second Day" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2019, Sean Zheng.</p>
-  </div>
+    <p>
+        &#169; Copyright 2019, Sean Zheng.
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
         </div>
       </div>
+
     </section>
+
   </div>
-  <script>
+  
+
+  <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>
