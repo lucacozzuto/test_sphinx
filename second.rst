@@ -68,6 +68,8 @@ And let's create another script (test2.nf) and save the following code in it:
 .. code-block:: guess
 
 	#!/usr/bin/env nextflow
+
+	// enable DSL2
 	nextflow.enable.dsl=2
 	
 	/*
@@ -113,7 +115,7 @@ See here [fromFilePairs](https://www.nextflow.io/docs/latest/channel.html#fromfi
 
 ### ANSWER
 
-.. code-block:: guess
+.. code-block:: java
 	#!/usr/bin/env nextflow
 	nextflow.enable.dsl=2
 	/*
