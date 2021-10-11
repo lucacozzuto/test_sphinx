@@ -42,19 +42,7 @@
 <li class="toctree-l1"><a class="reference internal" href="about.html">About the course</a></li>
 <li class="toctree-l1"><a class="reference internal" href="first.html">First Day</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Second Day</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#channels-and-operators">Channels and Operators</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id33">}</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id40">}</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id59">}</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id70">}</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id81">}</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id92">}</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id103">}</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id112">}</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id129">}</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id134">}</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#channels-and-operators">Channels and Operators</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="third.html">Second Day</a></li>
@@ -118,152 +106,110 @@
 </pre></div>
 </div>
 <p>Once the file is saved, execute it with:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`{bash,</span> <span class="pre">eval=FALSE,</span> <span class="pre">echo=TRUE}</span>
-<span class="pre">nextflow</span> <span class="pre">run</span> <span class="pre">test0.nf</span>
-<span class="pre">N</span> <span class="pre">E</span> <span class="pre">X</span> <span class="pre">T</span> <span class="pre">F</span> <span class="pre">L</span> <span class="pre">O</span> <span class="pre">W</span>&#160; <span class="pre">~</span>&#160; <span class="pre">version</span> <span class="pre">20.07.1</span>
-<span class="pre">Launching</span> <span class="pre">`test0.nf`</span> <span class="pre">[agitated_avogadro]</span> <span class="pre">-</span> <span class="pre">revision:</span> <span class="pre">61a595c5bf</span>
-<span class="pre">hello</span>
-<span class="pre">hola</span>
-<span class="pre">bonjour</span>
-<span class="pre">`</span></code>
-As you can see the <strong>Channel</strong> is just a collection of values, but it can also be a collection of <strong>file paths</strong>.
-&lt;br&gt;
-Let’s create three empty files with the <cite>touch</cite> command:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`{bash,</span> <span class="pre">eval=FALSE,</span> <span class="pre">echo=TRUE}</span>
-<span class="pre">touch</span> <span class="pre">aa.txt</span> <span class="pre">bb.txt</span> <span class="pre">cc.txt</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>nextflow run test0.nf
+N E X T F L O W  ~  version 20.07.1
+Launching `test0.nf` [agitated_avogadro] - revision: 61a595c5bf
+hello
+hola
+bonjour
+</pre></div>
+</div>
+<p>As you can see the <strong>Channel</strong> is just a collection of values, but it can also be a collection of <strong>file paths</strong>.</p>
+<p>Let’s create three empty files with the <cite>touch</cite> command:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>touch aa.txt bb.txt cc.txt
+</pre></div>
+</div>
 <p>And let’s create another script (test2.nf) and save the following code in it:</p>
-<p><a href="#id1"><span class="problematic" id="id2">``</span></a><cite>{java, eval=FALSE, echo=TRUE}
-#!/usr/bin/env nextflow
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>#!/usr/bin/env nextflow
 nextflow.enable.dsl=2
 /*
-* Let’s create the channel `my_files</cite>
+* Let&#39;s create the channel `my_files`
 * using the method fromPath
-<a href="#id3"><span class="problematic" id="id4">*</span></a>/
-Channel</p>
-<blockquote>
-<div><p>.fromPath( “<a href="#id5"><span class="problematic" id="id6">*</span></a>.txt” )
-.set {my_files}</p>
-</div></blockquote>
-<p>// We can use the view() operator again to see the content of channel “my_files”
+*/
+Channel
+    .fromPath( &quot;*.txt&quot; )
+    .set {my_files}
+// We can use the view() operator again to see the content of channel &quot;my_files&quot;
 my_files.view()
-<a href="#id7"><span class="problematic" id="id8">``</span></a><a href="#id9"><span class="problematic" id="id10">`</span></a></p>
+</pre></div>
+</div>
 <p>We can now execute <cite>test2.nf</cite>:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`{bash,</span> <span class="pre">eval=FALSE,</span> <span class="pre">echo=TRUE}</span>
-<span class="pre">nextflow</span> <span class="pre">run</span> <span class="pre">test2.nf</span>
-<span class="pre">N</span> <span class="pre">E</span> <span class="pre">X</span> <span class="pre">T</span> <span class="pre">F</span> <span class="pre">L</span> <span class="pre">O</span> <span class="pre">W</span>&#160; <span class="pre">~</span>&#160; <span class="pre">version</span> <span class="pre">20.07.1</span>
-<span class="pre">Launching</span> <span class="pre">`test2.nf`</span> <span class="pre">[condescending_hugle]</span> <span class="pre">-</span> <span class="pre">revision:</span> <span class="pre">f513c0fac3</span>
-<span class="pre">/home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/aa.txt</span>
-<span class="pre">/home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/bb.txt</span>
-<span class="pre">/home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/cc.txt</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>nextflow run test2.nf
+N E X T F L O W  ~  version 20.07.1
+Launching `test2.nf` [condescending_hugle] - revision: f513c0fac3
+/home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/aa.txt
+/home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/bb.txt
+/home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/cc.txt
+</pre></div>
+</div>
 <p>Once executed, we can see that a folder named <strong>work</strong> is generated: Nextflow stores in this folder the intermediate files generated by the processes.</p>
 <p>## EXERCISE 1</p>
 <ul class="simple">
 <li><p>Let’s create a couple of files (e.g. paired-end reads) and let’s try to read them as a tuple.</p></li>
 </ul>
 <p>First create a couple of empty files:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`{bash,</span> <span class="pre">eval=FALSE,</span> <span class="pre">echo=TRUE}</span>
-<span class="pre">touch</span> <span class="pre">aaa_1.txt</span> <span class="pre">aaa_2.txt</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>touch aaa_1.txt aaa_2.txt
+</pre></div>
+</div>
 <p>See here [fromFilePairs](<a class="reference external" href="https://www.nextflow.io/docs/latest/channel.html#fromfilepairs">https://www.nextflow.io/docs/latest/channel.html#fromfilepairs</a>).</p>
-<p>&lt;details&gt;
-&lt;summary&gt;
-&lt;h5 style=”background-color: #e6fadc; display: inline-block;”&gt;*Answer*&lt;/h5&gt;
-&lt;/summary&gt;</p>
-<p><a href="#id11"><span class="problematic" id="id12">``</span></a><cite>{java, eval=FALSE, echo=TRUE}
-#!/usr/bin/env nextflow
-nextflow.enable.dsl=2
-/*
-* Let’s create the channel `my_files</cite>
-* using the method fromFilePairs
-<a href="#id13"><span class="problematic" id="id14">*</span></a>/
-Channel</p>
-<blockquote>
-<div><p>.fromFilePairs( “aaa_{1,2}.txt” )
-.set {my_files}</p>
-</div></blockquote>
-<p>my_files.view()
-<a href="#id15"><span class="problematic" id="id16">``</span></a><a href="#id17"><span class="problematic" id="id18">`</span></a></p>
-<p>&lt;/details&gt;</p>
+<p>### ANSWER</p>
 <ul class="simple">
 <li><p>For the second part of this exercise, We can start again from <cite>.fromPath</cite> and read the previous 3 <cite>.txt</cite> files (“aa.txt”, “bb.txt”, “cc.txt”) into the input channel.</p></li>
 </ul>
-<p>&lt;br&gt;
-Try to reshape the input channel using different operators by generating:</p>
-<blockquote>
-<div><ul class="simple">
+<dl class="simple">
+<dt>Try to reshape the input channel using different operators by generating:</dt><dd><ul class="simple">
 <li><p>A <strong>single emission</strong>.</p></li>
 <li><p>A channel with each possible file combination</p></li>
 <li><p>A tuple with a custom id, i.e. something like [“id”, [“aa.txt”, “bb.txt”, “cc.txt”]]</p></li>
 </ul>
-</div></blockquote>
+</dd>
+</dl>
 <p>See here the list of [Operators](<a class="reference external" href="https://www.nextflow.io/docs/latest/operator">https://www.nextflow.io/docs/latest/operator</a>.html#) available.</p>
-<p>&lt;details&gt;
-&lt;summary&gt;
-&lt;h5 style=”background-color: #e6fadc; display: inline-block;”&gt;*Answer*&lt;/h5&gt;
-&lt;/summary&gt;</p>
-<p><a href="#id19"><span class="problematic" id="id20">``</span></a><a href="#id21"><span class="problematic" id="id22">`</span></a>{java, eval=FALSE, echo=TRUE}
-#!/usr/bin/env nextflow
-nextflow.enable.dsl=2
-Channel</p>
-<blockquote>
-<div><p>.fromPath(“{aa,bb,cc}.txt”)
-.set {my_files}</p>
-</div></blockquote>
-<dl class="simple">
-<dt>my_files</dt><dd><p>.collect()
-.view()</p>
-</dd>
-</dl>
-<p>// You can also write it as: my_files.collect().view()
-my_files</p>
-<blockquote>
-<div><p>.combine(my_files)
-.view()</p>
-</div></blockquote>
-<dl>
-<dt>my_files</dt><dd><p>.collect()
-.map{</p>
-<blockquote>
-<div><p>[“id”, it]
-}</p>
-</div></blockquote>
-<p>.view()</p>
-</dd>
-</dl>
-<p><a href="#id23"><span class="problematic" id="id24">``</span></a><a href="#id25"><span class="problematic" id="id26">`</span></a></p>
-<p>&lt;/details&gt;</p>
+<p>### RESULTS</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="sx">#!/usr/bin/env</span> <span class="sx">nextflow</span>
+<span class="sx">nextflow.enable.dsl</span><span class="p">=</span><span class="mi">2</span>
+<span class="sx">Channel</span>
+    <span class="sx">.fromPath(&quot;{aa,bb,cc}.txt&quot;)</span>
+   <span class="kr">.set</span> <span class="nv">{my_files}</span>
+<span class="sx">my_files</span>
+    <span class="sx">.collect()</span>
+    <span class="sx">.view()</span>
+<span class="sx">//</span> <span class="sx">You</span> <span class="sx">can</span> <span class="sx">also</span> <span class="sx">write</span> <span class="sx">it</span> <span class="nl">as</span><span class="p">:</span> <span class="sx">my_files.collect().view()</span>
+<span class="sx">my_files</span>
+    <span class="sx">.combine(my_files)</span>
+    <span class="sx">.view()</span>
+<span class="sx">my_files</span>
+    <span class="sx">.collect()</span>
+    <span class="sx">.map{</span>
+        <span class="sx">[&quot;id&quot;,</span> <span class="sx">it]</span>
+        <span class="sx">}</span>
+    <span class="sx">.view()</span>
+</pre></div>
+</div>
 <p>## Processes</p>
 <p>Let’s add a process to the previous script <cite>test0.nf</cite> and let’s call it test1.nf</p>
-<p><a href="#id27"><span class="problematic" id="id28">``</span></a><a href="#id29"><span class="problematic" id="id30">`</span></a>{java, eval=FALSE, echo=TRUE}
-#!/usr/bin/env nextflow
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>#!/usr/bin/env nextflow
 nextflow.enable.dsl=2
-str = Channel.from(‘hello’, ‘hola’, ‘bonjour’)
-/*</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Creates a process which receives an input channel containing values</p></li>
-<li><p>Each value emitted by the channel triggers the execution</p></li>
-<li><p>of the process. The process stdout is captured and sent over</p></li>
-<li><p>the another channel.</p></li>
-</ul>
-<p><a href="#id31"><span class="problematic" id="id32">*</span></a>/</p>
-</div></blockquote>
-<dl class="simple">
-<dt>process printHello {</dt><dd><p>tag { “${str_in}” } // this is for displaying the content of <cite>str_in</cite> in the log file
-input:
-val str_in
-output:
-stdout
-script:
-“””
-echo ${str_in} in Italian is ciao
-“””</p>
-</dd>
-</dl>
-<section id="id33">
-<h3>}<a class="headerlink" href="#id33" title="Permalink to this headline"></a></h3>
+str = Channel.from(&#39;hello&#39;, &#39;hola&#39;, &#39;bonjour&#39;)
+/*
+ * Creates a process which receives an input channel containing values
+ * Each value emitted by the channel triggers the execution
+ * of the process. The process stdout is captured and sent over
+ * the another channel.
+ */
+process printHello {
+   tag { &quot;${str_in}&quot; } // this is for displaying the content of `str_in` in the log file
+   input:
+   val str_in
+   output:
+   stdout
+   script:
+   &quot;&quot;&quot;
+   echo ${str_in} in Italian is ciao
+   &quot;&quot;&quot;
+}
+</pre></div>
+</div>
 <p>The process can be seen as a function that is composed of:</p>
 <ul class="simple">
 <li><p>An <strong>input</strong> part where the input channels are defined.</p></li>
@@ -275,82 +221,81 @@ echo ${str_in} in Italian is ciao
 <p>The code as it is will not produce anything, because another part is needed that will actually <strong>call the process</strong> and connect it to the input channel.&lt;br&gt;</p>
 <p>This part is called a <strong>workflow</strong>.&lt;br&gt;
 Let’s add a workflow to our code:</p>
-<p><a href="#id34"><span class="problematic" id="id35">``</span></a><a href="#id36"><span class="problematic" id="id37">`</span></a>{java, eval=FALSE, echo=TRUE}
-#!/usr/bin/env nextflow
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>#!/usr/bin/env nextflow
 nextflow.enable.dsl=2
-str = Channel.from(‘hello’, ‘hola’, ‘bonjour’)
-process printHello {</p>
-<blockquote>
-<div><p>tag { “${str_in}” }
-input:
-val str_in
-output:
-stdout
-script:
-“””
-echo ${str_in} in Italian is ciao
-“””</p>
-</div></blockquote>
-<p>}
-/*</p>
-<blockquote>
-<div><ul class="simple">
+str = Channel.from(&#39;hello&#39;, &#39;hola&#39;, &#39;bonjour&#39;)
+process printHello {
+   tag { &quot;<span class="cp">${</span><span class="n">str_in</span><span class="cp">}</span>&quot; }
+   input:
+   val str_in
+   output:
+   stdout
+   script:
+   &quot;&quot;&quot;
+   echo <span class="cp">${</span><span class="n">str_in</span><span class="cp">}</span> in Italian is ciao
+   &quot;&quot;&quot;
+}
+</pre></div>
+</div>
+<dl>
+<dt>/*</dt><dd><ul class="simple">
 <li><p>A workflow consists of a number of invocations of processes</p></li>
 <li><p>where they are fed with the expected input channels</p></li>
 <li><p>as if they were custom functions. You can only invoke a process once per workflow.</p></li>
 </ul>
-<p><a href="#id38"><span class="problematic" id="id39">*</span></a>/</p>
-</div></blockquote>
-<dl class="simple">
-<dt>workflow {</dt><dd><p>result = printHello(str)
-result.view()</p>
+<p><a href="#id1"><span class="problematic" id="id2">*</span></a>/</p>
 </dd>
 </dl>
-</section>
-<section id="id40">
-<h3>}<a class="headerlink" href="#id40" title="Permalink to this headline"></a></h3>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>workflow {
+ result = printHello(str)
+ result.view()
+}
+</pre></div>
+</div>
 <p>We can run the script this time sending the execution in the background (with the <cite>-bg</cite> option) and saving the log in the file <cite>log.txt</cite>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">`{bash,</span> <span class="pre">eval=FALSE,</span> <span class="pre">echo=TRUE}</span>
-<span class="pre">nextflow</span> <span class="pre">run</span> <span class="pre">test1.nf</span> <span class="pre">-bg</span> <span class="pre">&gt;</span> <span class="pre">log.txt</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>nextflow run test1.nf -bg &gt; log.txt
+</pre></div>
+</div>
 <p>### Nextflow log</p>
 <p>Let’s inspect now the log file:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`{bash,</span> <span class="pre">eval=FALSE,</span> <span class="pre">echo=TRUE}</span>
-<span class="pre">cat</span> <span class="pre">log.txt</span>
-<span class="pre">N</span> <span class="pre">E</span> <span class="pre">X</span> <span class="pre">T</span> <span class="pre">F</span> <span class="pre">L</span> <span class="pre">O</span> <span class="pre">W</span>&#160; <span class="pre">~</span>&#160; <span class="pre">version</span> <span class="pre">20.07.1</span>
-<span class="pre">Launching</span> <span class="pre">`test1.nf`</span> <span class="pre">[high_fermat]</span> <span class="pre">-</span> <span class="pre">revision:</span> <span class="pre">b129d66e57</span>
-<span class="pre">[6a/2dfcaf]</span> <span class="pre">Submitted</span> <span class="pre">process</span> <span class="pre">&gt;</span> <span class="pre">printHello</span> <span class="pre">(hola)</span>
-<span class="pre">[24/a286da]</span> <span class="pre">Submitted</span> <span class="pre">process</span> <span class="pre">&gt;</span> <span class="pre">printHello</span> <span class="pre">(hello)</span>
-<span class="pre">[04/e733db]</span> <span class="pre">Submitted</span> <span class="pre">process</span> <span class="pre">&gt;</span> <span class="pre">printHello</span> <span class="pre">(bonjour)</span>
-<span class="pre">hola</span> <span class="pre">in</span> <span class="pre">Italian</span> <span class="pre">is</span> <span class="pre">ciao</span>
-<span class="pre">hello</span> <span class="pre">in</span> <span class="pre">Italian</span> <span class="pre">is</span> <span class="pre">ciao</span>
-<span class="pre">bonjour</span> <span class="pre">in</span> <span class="pre">Italian</span> <span class="pre">is</span> <span class="pre">ciao</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>cat log.txt
+
+N E X T F L O W  ~  version 20.07.1
+Launching `test1.nf` [high_fermat] - revision: b129d66e57
+[6a/2dfcaf] Submitted process &gt; printHello (hola)
+[24/a286da] Submitted process &gt; printHello (hello)
+[04/e733db] Submitted process &gt; printHello (bonjour)
+hola in Italian is ciao
+hello in Italian is ciao
+bonjour in Italian is ciao
+</pre></div>
+</div>
 <p>The <strong>tag</strong> allows us to see that the process <strong>printHello</strong> was launched &lt;u&gt;three times&lt;/u&gt; on the hola, hello and bonjour values contained in the input channel. &lt;br&gt;</p>
 <p>At the start of each row, there is an &lt;u&gt;alphanumeric code&lt;/u&gt;:</p>
 <p><strong>[6a/2dfcaf]</strong> Submitted process &gt; printHello (hola)</p>
 <p>This code indicates <strong>the path</strong> in which the process is “isolated” and where the corresponding temporary files are kept in the <strong>work</strong> directory. &lt;br&gt;</p>
 <p><strong>IMPORTANT: Nextflow will randomly generate temporary folders so they will be named differently in your execution!!!</strong></p>
 <p>Let’s have a look inside that folder:</p>
-<p><a href="#id41"><span class="problematic" id="id42">``</span></a><a href="#id43"><span class="problematic" id="id44">`</span></a>{bash, eval=FALSE, echo=TRUE}
-# Show the folder’s full name
-echo work/6a/2dfcaf*</p>
-<blockquote>
-<div><p>work/6a/2dfcafc01350f475c60b2696047a87</p>
-</div></blockquote>
-<p># List was is inside the folder
-ls -alht work/6a/2dfcaf*
-total 40
--rw-r–r–  1 lcozzuto  staff     1B Oct  7 13:39 .exitcode
-drwxr-xr-x  9 lcozzuto  staff   288B Oct  7 13:39 .
--rw-r–r–  1 lcozzuto  staff    24B Oct  7 13:39 .command.log
--rw-r–r–  1 lcozzuto  staff    24B Oct  7 13:39 .command.out
--rw-r–r–  1 lcozzuto  staff     0B Oct  7 13:39 .command.err
--rw-r–r–  1 lcozzuto  staff     0B Oct  7 13:39 .command.begin
--rw-r–r–  1 lcozzuto  staff    45B Oct  7 13:39 .command.sh
--rw-r–r–  1 lcozzuto  staff   2.5K Oct  7 13:39 .command.run
-drwxr-xr-x  3 lcozzuto  staff    96B Oct  7 13:39 ..
-<a href="#id45"><span class="problematic" id="id46">``</span></a><a href="#id47"><span class="problematic" id="id48">`</span></a></p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span># <span class="k">Show</span> <span class="nv">the</span> <span class="nv">folder</span><span class="s1">&#39;</span><span class="s">s full name</span>
+
+<span class="nv">echo</span> <span class="nv">work</span><span class="o">/</span><span class="mi">6</span><span class="nv">a</span><span class="o">/</span><span class="mi">2</span><span class="nv">dfcaf</span><span class="o">*</span>
+  <span class="nv">work</span><span class="o">/</span><span class="mi">6</span><span class="nv">a</span><span class="o">/</span><span class="mi">2</span><span class="nv">dfcafc01350f475c60b2696047a87</span>
+
+# <span class="nv">List</span> <span class="nv">was</span> <span class="nv">is</span> <span class="nv">inside</span> <span class="nv">the</span> <span class="nv">folder</span>
+
+<span class="nv">ls</span> <span class="o">-</span><span class="nv">alht</span> <span class="nv">work</span><span class="o">/</span><span class="mi">6</span><span class="nv">a</span><span class="o">/</span><span class="mi">2</span><span class="nv">dfcaf</span><span class="o">*</span>
+<span class="nv">total</span> <span class="mi">40</span>
+<span class="o">-</span><span class="nv">rw</span><span class="o">-</span><span class="nv">r</span><span class="o">--</span><span class="nv">r</span><span class="o">--</span>  <span class="mi">1</span> <span class="nv">lcozzuto</span>  <span class="nv">staff</span>     <span class="mi">1</span><span class="nv">B</span> <span class="nv">Oct</span>  <span class="mi">7</span> <span class="mi">13</span>:<span class="mi">39</span> .<span class="nv">exitcode</span>
+<span class="nv">drwxr</span><span class="o">-</span><span class="nv">xr</span><span class="o">-</span><span class="nv">x</span>  <span class="mi">9</span> <span class="nv">lcozzuto</span>  <span class="nv">staff</span>   <span class="mi">288</span><span class="nv">B</span> <span class="nv">Oct</span>  <span class="mi">7</span> <span class="mi">13</span>:<span class="mi">39</span> .
+<span class="o">-</span><span class="nv">rw</span><span class="o">-</span><span class="nv">r</span><span class="o">--</span><span class="nv">r</span><span class="o">--</span>  <span class="mi">1</span> <span class="nv">lcozzuto</span>  <span class="nv">staff</span>    <span class="mi">24</span><span class="nv">B</span> <span class="nv">Oct</span>  <span class="mi">7</span> <span class="mi">13</span>:<span class="mi">39</span> .<span class="nv">command</span>.<span class="nv">log</span>
+<span class="o">-</span><span class="nv">rw</span><span class="o">-</span><span class="nv">r</span><span class="o">--</span><span class="nv">r</span><span class="o">--</span>  <span class="mi">1</span> <span class="nv">lcozzuto</span>  <span class="nv">staff</span>    <span class="mi">24</span><span class="nv">B</span> <span class="nv">Oct</span>  <span class="mi">7</span> <span class="mi">13</span>:<span class="mi">39</span> .<span class="nv">command</span>.<span class="nv">out</span>
+<span class="o">-</span><span class="nv">rw</span><span class="o">-</span><span class="nv">r</span><span class="o">--</span><span class="nv">r</span><span class="o">--</span>  <span class="mi">1</span> <span class="nv">lcozzuto</span>  <span class="nv">staff</span>     <span class="mi">0</span><span class="nv">B</span> <span class="nv">Oct</span>  <span class="mi">7</span> <span class="mi">13</span>:<span class="mi">39</span> .<span class="nv">command</span>.<span class="nv">err</span>
+<span class="o">-</span><span class="nv">rw</span><span class="o">-</span><span class="nv">r</span><span class="o">--</span><span class="nv">r</span><span class="o">--</span>  <span class="mi">1</span> <span class="nv">lcozzuto</span>  <span class="nv">staff</span>     <span class="mi">0</span><span class="nv">B</span> <span class="nv">Oct</span>  <span class="mi">7</span> <span class="mi">13</span>:<span class="mi">39</span> .<span class="nv">command</span>.<span class="nv">begin</span>
+<span class="o">-</span><span class="nv">rw</span><span class="o">-</span><span class="nv">r</span><span class="o">--</span><span class="nv">r</span><span class="o">--</span>  <span class="mi">1</span> <span class="nv">lcozzuto</span>  <span class="nv">staff</span>    <span class="mi">45</span><span class="nv">B</span> <span class="nv">Oct</span>  <span class="mi">7</span> <span class="mi">13</span>:<span class="mi">39</span> .<span class="nv">command</span>.<span class="nv">sh</span>
+<span class="o">-</span><span class="nv">rw</span><span class="o">-</span><span class="nv">r</span><span class="o">--</span><span class="nv">r</span><span class="o">--</span>  <span class="mi">1</span> <span class="nv">lcozzuto</span>  <span class="nv">staff</span>   <span class="mi">2</span>.<span class="mi">5</span><span class="nv">K</span> <span class="nv">Oct</span>  <span class="mi">7</span> <span class="mi">13</span>:<span class="mi">39</span> .<span class="nv">command</span>.<span class="nv">run</span>
+<span class="nv">drwxr</span><span class="o">-</span><span class="nv">xr</span><span class="o">-</span><span class="nv">x</span>  <span class="mi">3</span> <span class="nv">lcozzuto</span>  <span class="nv">staff</span>    <span class="mi">96</span><span class="nv">B</span> <span class="nv">Oct</span>  <span class="mi">7</span> <span class="mi">13</span>:<span class="mi">39</span> ..
+</pre></div>
+</div>
 <p>You see a lot of “hidden” files:</p>
 <ul class="simple">
 <li><p><strong>.exitcode</strong>, contains 0 if everything is ok, another value if there was a problem.</p></li>
@@ -362,97 +307,96 @@ drwxr-xr-x  3 lcozzuto  staff    96B Oct  7 13:39 ..
 <li><p><strong>.command.run</strong>, contains the code made by nextflow for the execution of <cite>.command.sh</cite>, and contains environmental variables, eventual invocations of linux containers etc.</p></li>
 </ul>
 <p>For instance the content of <cite>.command.sh</cite> is:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`{bash,</span> <span class="pre">eval=FALSE,</span> <span class="pre">echo=TRUE}</span>
-<span class="pre">cat</span> <span class="pre">work/6a/2dfcaf*/.command.sh</span>
-<span class="pre">#!/bin/bash</span> <span class="pre">-ue</span>
-<span class="pre">echo</span> <span class="pre">hola</span> <span class="pre">in</span> <span class="pre">Italian</span> <span class="pre">is</span> <span class="pre">ciao</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>cat work/6a/2dfcaf*/.command.sh
+#!/bin/bash -ue
+echo hola in Italian is ciao
+</pre></div>
+</div>
 <p>And the content of <cite>.command.out</cite> is</p>
-<p><code class="docutils literal notranslate"><span class="pre">`{bash,</span> <span class="pre">eval=FALSE,</span> <span class="pre">echo=TRUE}</span>
-<span class="pre">cat</span> <span class="pre">work/6a/2dfcaf*/.command.out</span>
-<span class="pre">hola</span> <span class="pre">in</span> <span class="pre">Italian</span> <span class="pre">is</span> <span class="pre">ciao</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>cat work/6a/2dfcaf*/.command.out
+hola in Italian is ciao
+</pre></div>
+</div>
 <p>You can also give a name to workflows, so that you can combine them in the main workflow. For instance we can write:</p>
-<p><a href="#id49"><span class="problematic" id="id50">``</span></a><a href="#id51"><span class="problematic" id="id52">`</span></a>{java, eval=FALSE, echo=TRUE}
-#!/usr/bin/env nextflow
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>#!/usr/bin/env nextflow
 nextflow.enable.dsl=2
-str = Channel.from(‘hello’, ‘hola’, ‘bonjour’)
-process printHello {</p>
-<blockquote>
-<div><p>tag { “${str_in}” }
-input:
-val str_in
-output:
-stdout
-script:
-“””
-echo ${str_in} in Italian is ciao
-“””</p>
-</div></blockquote>
-<p>}
-/*</p>
-<blockquote>
-<div><ul class="simple">
+str = Channel.from(&#39;hello&#39;, &#39;hola&#39;, &#39;bonjour&#39;)
+process printHello {
+  tag { &quot;<span class="cp">${</span><span class="n">str_in</span><span class="cp">}</span>&quot; }
+  input:
+   val str_in
+   output:
+   stdout
+   script:
+   &quot;&quot;&quot;
+   echo <span class="cp">${</span><span class="n">str_in</span><span class="cp">}</span> in Italian is ciao
+   &quot;&quot;&quot;
+}
+</pre></div>
+</div>
+<dl>
+<dt>/*</dt><dd><ul class="simple">
 <li><p>A workflow can be named as a function and receive an input using the take keyword</p></li>
 </ul>
-<p><a href="#id53"><span class="problematic" id="id54">*</span></a>/</p>
-</div></blockquote>
-<dl class="simple">
-<dt>workflow first_pipeline {</dt><dd><p>take: str_input
-main:
-printHello(str_input).view()</p>
+<p><a href="#id3"><span class="problematic" id="id4">*</span></a>/</p>
 </dd>
 </dl>
-<p>}
-/*</p>
-<blockquote>
-<div><ul class="simple">
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>workflow first_pipeline {
+   take: str_input
+    main:
+    printHello(str_input).view()
+}
+</pre></div>
+</div>
+<dl>
+<dt>/*</dt><dd><ul class="simple">
 <li><p>You can re-use the previous processes and combine as you prefer</p></li>
 </ul>
-<p><a href="#id55"><span class="problematic" id="id56">*</span></a>/</p>
-</div></blockquote>
-<dl class="simple">
-<dt>workflow second_pipeline {</dt><dd><p>take: str_input
-main:
-printHello(str_input.collect()).view()</p>
+<p><a href="#id5"><span class="problematic" id="id6">*</span></a>/</p>
 </dd>
 </dl>
-<p>}
-/*</p>
-<blockquote>
-<div><ul class="simple">
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>workflow second_pipeline {
+    take: str_input
+    main:
+    printHello(str_input.collect()).view()
+}
+</pre></div>
+</div>
+<dl>
+<dt>/*</dt><dd><ul class="simple">
 <li><p>You can then invoke the different named workflows in this way</p></li>
 <li><p>passing the same input channel <cite>str</cite> to both</p></li>
 </ul>
-<p><a href="#id57"><span class="problematic" id="id58">*</span></a>/</p>
-</div></blockquote>
-<dl class="simple">
-<dt>workflow {</dt><dd><p>first_pipeline(str)
-second_pipeline(str)</p>
+<p><a href="#id7"><span class="problematic" id="id8">*</span></a>/</p>
 </dd>
 </dl>
-</section>
-<section id="id59">
-<h3>}<a class="headerlink" href="#id59" title="Permalink to this headline"></a></h3>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>workflow {
+    first_pipeline(str)
+    second_pipeline(str)
+}
+</pre></div>
+</div>
 <p>You can see that with the previous code you can execute two workflows containing the same process. &lt;br&gt;
 We can add the <strong>collect</strong> operator to the second workflow that collects the output from different executions and returns the resulting list <strong>as a sole emission</strong>.</p>
 <p>Let’s run the code:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`{bash,</span> <span class="pre">eval=FALSE,</span> <span class="pre">echo=TRUE}</span>
-<span class="pre">nextflow</span> <span class="pre">run</span> <span class="pre">test1.nf</span> <span class="pre">-bg</span> <span class="pre">&gt;</span> <span class="pre">log2</span>
-<span class="pre">cat</span> <span class="pre">log2</span>
-<span class="pre">N</span> <span class="pre">E</span> <span class="pre">X</span> <span class="pre">T</span> <span class="pre">F</span> <span class="pre">L</span> <span class="pre">O</span> <span class="pre">W</span>&#160; <span class="pre">~</span>&#160; <span class="pre">version</span> <span class="pre">20.07.1</span>
-<span class="pre">Launching</span> <span class="pre">`test1.nf`</span> <span class="pre">[irreverent_davinci]</span> <span class="pre">-</span> <span class="pre">revision:</span> <span class="pre">25a5511d1d</span>
-<span class="pre">[de/105b97]</span> <span class="pre">Submitted</span> <span class="pre">process</span> <span class="pre">&gt;</span> <span class="pre">first_pipeline:printHello</span> <span class="pre">(hello)</span>
-<span class="pre">[ba/051c23]</span> <span class="pre">Submitted</span> <span class="pre">process</span> <span class="pre">&gt;</span> <span class="pre">first_pipeline:printHello</span> <span class="pre">(bonjour)</span>
-<span class="pre">[1f/9b41b2]</span> <span class="pre">Submitted</span> <span class="pre">process</span> <span class="pre">&gt;</span> <span class="pre">second_pipeline:printHello</span> <span class="pre">(hello)</span>
-<span class="pre">[8d/270d93]</span> <span class="pre">Submitted</span> <span class="pre">process</span> <span class="pre">&gt;</span> <span class="pre">first_pipeline:printHello</span> <span class="pre">(hola)</span>
-<span class="pre">[18/7b84c3]</span> <span class="pre">Submitted</span> <span class="pre">process</span> <span class="pre">&gt;</span> <span class="pre">second_pipeline:printHello</span> <span class="pre">(hola)</span>
-<span class="pre">hello</span> <span class="pre">in</span> <span class="pre">Italian</span> <span class="pre">is</span> <span class="pre">ciao</span>
-<span class="pre">bonjour</span> <span class="pre">in</span> <span class="pre">Italian</span> <span class="pre">is</span> <span class="pre">ciao</span>
-<span class="pre">[0f/f78baf]</span> <span class="pre">Submitted</span> <span class="pre">process</span> <span class="pre">&gt;</span> <span class="pre">second_pipeline:printHello</span> <span class="pre">(bonjour)</span>
-<span class="pre">hola</span> <span class="pre">in</span> <span class="pre">Italian</span> <span class="pre">is</span> <span class="pre">ciao</span>
-<span class="pre">['hello</span> <span class="pre">in</span> <span class="pre">Italian</span> <span class="pre">is</span> <span class="pre">ciao\n',</span> <span class="pre">'hola</span> <span class="pre">in</span> <span class="pre">Italian</span> <span class="pre">is</span> <span class="pre">ciao\n',</span> <span class="pre">'bonjour</span> <span class="pre">in</span> <span class="pre">Italian</span> <span class="pre">is</span> <span class="pre">ciao\n']</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>nextflow run test1.nf -bg &gt; log2
+
+cat log2
+
+N E X T F L O W  ~  version 20.07.1
+Launching `test1.nf` [irreverent_davinci] - revision: 25a5511d1d
+[de/105b97] Submitted process &gt; first_pipeline:printHello (hello)
+[ba/051c23] Submitted process &gt; first_pipeline:printHello (bonjour)
+[1f/9b41b2] Submitted process &gt; second_pipeline:printHello (hello)
+[8d/270d93] Submitted process &gt; first_pipeline:printHello (hola)
+[18/7b84c3] Submitted process &gt; second_pipeline:printHello (hola)
+hello in Italian is ciao
+bonjour in Italian is ciao
+[0f/f78baf] Submitted process &gt; second_pipeline:printHello (bonjour)
+hola in Italian is ciao
+[&#39;hello in Italian is ciao\n&#39;, &#39;hola in Italian is ciao\n&#39;, &#39;bonjour in Italian is ciao\n&#39;]
+</pre></div>
+</div>
 <p>## EXERCISE 2</p>
 <blockquote>
 <div><ul class="simple">
@@ -465,82 +409,65 @@ We can add the <strong>collect</strong> operator to the second workflow that col
 &lt;summary&gt;
 &lt;h5 style=”background-color: #e6fadc; display: inline-block;”&gt;*Answer*&lt;/h5&gt;
 &lt;/summary&gt;</p>
-<p><a href="#id60"><span class="problematic" id="id61">``</span></a><a href="#id62"><span class="problematic" id="id63">`</span></a>{java, eval=FALSE, echo=TRUE}
-#!/usr/bin/env nextflow
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>#!/usr/bin/env nextflow
 nextflow.enable.dsl=2
-str = Channel.from(‘hello’, ‘hola’, ‘bonjour’)
-process printHello {</p>
-<blockquote>
-<div><p>tag { “${str_in}” }
-input:
-val str_in
-output:
-path(“${str_in}.txt”)
-script:
-“””
-echo ${str_in} in Italian is ciao &gt; ${str_in}.txt
-“””</p>
-</div></blockquote>
-<p>}
-process printHello2 {</p>
-<blockquote>
-<div><p>tag { “${str_in}” }
-input:
-val str_in
-output:
-path(“cheers.txt”)
-script:
-“””
-echo ${str_in.join(’, ‘)} in Italian are ciao &gt; cheers.txt
-“””</p>
-</div></blockquote>
-<p>}
-/*</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>A workflow can be named as a function and receive an input using the take keyword</p></li>
-</ul>
-<p><a href="#id64"><span class="problematic" id="id65">*</span></a>/</p>
-</div></blockquote>
-<dl class="simple">
-<dt>workflow first_pipeline {</dt><dd><p>take: str_input
-main:
-out = printHello(str_input)
-emit: out</p>
-</dd>
-</dl>
-<p>}
-/*</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>You can re-use the previous processes an combine as you prefer</p></li>
-</ul>
-<p><a href="#id66"><span class="problematic" id="id67">*</span></a>/</p>
-</div></blockquote>
-<dl class="simple">
-<dt>workflow second_pipeline {</dt><dd><p>take: str_input
-main:
-out = printHello2(str_input.collect())
-emit: out</p>
-</dd>
-</dl>
-<p>}
-/*</p>
-<blockquote>
-<div><ul class="simple">
+str = Channel.from(&#39;hello&#39;, &#39;hola&#39;, &#39;bonjour&#39;)
+process printHello {
+   tag { &quot;<span class="cp">${</span><span class="n">str_in</span><span class="cp">}</span>&quot; }
+   input:
+   val str_in
+   output:
+   path(&quot;<span class="cp">${</span><span class="n">str_in</span><span class="cp">}</span>.txt&quot;)
+   script:
+   &quot;&quot;&quot;
+   echo <span class="cp">${</span><span class="n">str_in</span><span class="cp">}</span> in Italian is ciao &gt; <span class="cp">${</span><span class="n">str_in</span><span class="cp">}</span>.txt
+   &quot;&quot;&quot;
+}
+process printHello2 {
+   tag { &quot;<span class="cp">${</span><span class="n">str_in</span><span class="cp">}</span>&quot; }
+   input:
+   val str_in
+   output:
+   path(&quot;cheers.txt&quot;)
+   script:
+   &quot;&quot;&quot;
+   echo <span class="cp">${</span><span class="n">str_in</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span><span class="cp">}</span> in Italian are ciao &gt; cheers.txt
+   &quot;&quot;&quot;
+}
+/*
+ * A workflow can be named as a function and receive an input using the take keyword
+ */
+workflow first_pipeline {
+    take: str_input
+    main:
+    out = printHello(str_input)
+    emit: out
+}
+/*
+ * You can re-use the previous processes an combine as you prefer
+ */
+workflow second_pipeline {
+    take: str_input
+    main:
+    out = printHello2(str_input.collect())
+    emit: out
+}
+</pre></div>
+</div>
+<dl>
+<dt>/*</dt><dd><ul class="simple">
 <li><p>You can then invoke the different named workflows in this way</p></li>
 <li><p>passing the same input channel <cite>str</cite> to both</p></li>
 </ul>
-<p><a href="#id68"><span class="problematic" id="id69">*</span></a>/</p>
-</div></blockquote>
-<dl class="simple">
-<dt>workflow {</dt><dd><p>out1 = first_pipeline(str)
-out2 = second_pipeline(str)</p>
+<p><a href="#id9"><span class="problematic" id="id10">*</span></a>/</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>workflow {
+    out1 = first_pipeline(str)
+    out2 = second_pipeline(str)
+}
+</pre></div>
+</div>
 </dd>
 </dl>
-</section>
-<section id="id70">
-<h3>}<a class="headerlink" href="#id70" title="Permalink to this headline"></a></h3>
 <p>&lt;/details&gt;</p>
 <ul class="simple">
 <li><p>Change the pipeline to use only one process to handle both the cases (either one element or a list).&lt;br&gt; You can choose the elements from a list using the positional keys (i.e. list[0], list[1], etc…)</p></li>
@@ -549,305 +476,237 @@ out2 = second_pipeline(str)</p>
 &lt;summary&gt;
 &lt;h5 style=”background-color: #e6fadc; display: inline-block;”&gt;*Answer*&lt;/h5&gt;
 &lt;/summary&gt;</p>
-<p><a href="#id71"><span class="problematic" id="id72">``</span></a><a href="#id73"><span class="problematic" id="id74">`</span></a>{java, eval=FALSE, echo=TRUE}
-#!/usr/bin/env nextflow
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>#!/usr/bin/env nextflow
 nextflow.enable.dsl=2
-str = Channel.from(‘hello’, ‘hola’, ‘bonjour’)
-process printHello {</p>
-<blockquote>
-<div><p>tag { “${str_in}” }
-input:
-val str_in
-output:
-path(“${str_in[0]}.txt”)
-script:
-“””
-echo ${str_in} in Italian is ciao &gt; ${str_in[0]}.txt
-“””</p>
-</div></blockquote>
-<p>}
-/*</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>A workflow can be named as a function and receive an input using the take keyword</p></li>
-</ul>
-<p><a href="#id75"><span class="problematic" id="id76">*</span></a>/</p>
-</div></blockquote>
-<dl class="simple">
-<dt>workflow first_pipeline {</dt><dd><p>take: str_input
-main:
-out = printHello(str_input)
-emit: out</p>
-</dd>
-</dl>
-<p>}
-/*</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>You can re-use the previous processes an combine as you prefer</p></li>
-</ul>
-<p><a href="#id77"><span class="problematic" id="id78">*</span></a>/</p>
-</div></blockquote>
-<dl class="simple">
-<dt>workflow second_pipeline {</dt><dd><p>take: str_input
-main:
-out = printHello(str_input.collect())
-emit: out</p>
-</dd>
-</dl>
-<p>}
-/*</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>You can then invoke the different named workflows in this way</p></li>
-<li><p>passing the same input channel <cite>str</cite> to both</p></li>
-</ul>
-<p><a href="#id79"><span class="problematic" id="id80">*</span></a>/</p>
-</div></blockquote>
-<dl class="simple">
-<dt>workflow {</dt><dd><p>out1 = first_pipeline(str)
-out2 = second_pipeline(str)</p>
-</dd>
-</dl>
-</section>
-<section id="id81">
-<h3>}<a class="headerlink" href="#id81" title="Permalink to this headline"></a></h3>
+str = Channel.from(&#39;hello&#39;, &#39;hola&#39;, &#39;bonjour&#39;)
+process printHello {
+   tag { &quot;${str_in}&quot; }
+   input:
+   val str_in
+   output:
+   path(&quot;${str_in[0]}.txt&quot;)
+   script:
+   &quot;&quot;&quot;
+   echo ${str_in} in Italian is ciao &gt; ${str_in[0]}.txt
+   &quot;&quot;&quot;
+}
+/*
+ * A workflow can be named as a function and receive an input using the take keyword
+ */
+workflow first_pipeline {
+    take: str_input
+    main:
+    out = printHello(str_input)
+    emit: out
+}
+/*
+ * You can re-use the previous processes an combine as you prefer
+ */
+workflow second_pipeline {
+    take: str_input
+    main:
+    out = printHello(str_input.collect())
+    emit: out
+}
+/*
+ * You can then invoke the different named workflows in this way
+ * passing the same input channel `str` to both
+ */
+workflow {
+    out1 = first_pipeline(str)
+    out2 = second_pipeline(str)
+}
+</pre></div>
+</div>
 <p>&lt;/details&gt;</p>
 <p>## More complex scripts</p>
 <p>We can feed the channel that is generated by a process to another process in the workflow definition. In this way we have a proper pipeline. You can see that we need to escape the variable used by AWK otherwise they will be considered proper Nextflow variables producing an error. So every special character like <strong>$</strong> needs to be escaped (<strong>$</strong>) or you’ll get an error. Sometimes with long an difficult one liners you might want to make a small shell script and call it as an executable. You need to place it in a folder named <strong>bin</strong> inside the pipeline folder. This will be automatically considered from Nextflow as tool in the path.</p>
-<p><a href="#id82"><span class="problematic" id="id83">``</span></a><a href="#id84"><span class="problematic" id="id85">`</span></a>{java, eval=FALSE, echo=TRUE}
-#!/usr/bin/env nextflow
-nextflow.enable.dsl=2
-// the default “$baseDir/testdata/test.fa” can be overridden by using –inputfile OTHERFILENAME
-params.inputfile = “$baseDir/testdata/test.fa”
-// the “file method” returns a file system object given a file path string
-sequences_file = file(params.inputfile)
-// check if the file exists
-if( !sequences_file.exists() ) exit 1, “Missing genome file: ${genome_file}”
-/*</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Process 1 for splitting a fasta file in multiple files</p></li>
-</ul>
-<p><a href="#id86"><span class="problematic" id="id87">*</span></a>/</p>
-</div></blockquote>
-<dl class="simple">
-<dt>process splitSequences {</dt><dd><p>input:
-path sequencesFile
-output:
-path (‘seq_*’)
-// simple awk command
-script:
-“””
-awk ‘/^&gt;/{f=”<a href="#id135"><span class="problematic" id="id136">seq_</span></a>”++d} {print &gt; f}’ &lt; ${sequencesFile}
-“””</p>
-</dd>
-</dl>
-<p>}
-/*</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Process 2 for reversing the sequences. Note the escaped AWK variables $</p></li>
-</ul>
-<p><a href="#id88"><span class="problematic" id="id89">*</span></a>/</p>
-</div></blockquote>
-<dl>
-<dt>process reverseSequence {</dt><dd><p>tag { “${seq}” }
-input:
-path seq
-output:
-path “all.rev”</p>
-<blockquote>
-<div><p>script:</p>
-</div></blockquote>
-<p>“””
-cat ${seq} | awk ‘{if ($1~”&gt;”) {print $0} else system(“echo ” $0 ” <a href="#id90"><span class="problematic" id="id91">|</span></a>rev”)}’ &gt; all.rev
-“””</p>
-</dd>
-</dl>
-<p>}
-workflow {</p>
-<blockquote>
-<div><p>splitted_seq        = splitSequences(sequences_file)
-// Here you have the output channel as a collection
-splitted_seq.view()
-// Here you have the same channel reshaped to send separately each value
-splitted_seq.flatten().view()
-// DLS2 allows you to reuse the channels! In past you had to create many identical
-// channels for sending the same kind of data to different processes
-rev_single_seq      = reverseSequence(splitted_seq)</p>
-</div></blockquote>
-</section>
-<section id="id92">
-<h3>}<a class="headerlink" href="#id92" title="Permalink to this headline"></a></h3>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="c1">#!/usr/bin/env nextflow</span>
+<span class="n">nextflow</span><span class="o">.</span><span class="n">enable</span><span class="o">.</span><span class="n">dsl</span><span class="o">=</span><span class="mi">2</span>
+<span class="o">//</span> <span class="n">the</span> <span class="n">default</span> <span class="s2">&quot;$baseDir/testdata/test.fa&quot;</span> <span class="n">can</span> <span class="n">be</span> <span class="n">overridden</span> <span class="n">by</span> <span class="n">using</span> <span class="o">--</span><span class="n">inputfile</span> <span class="n">OTHERFILENAME</span>
+<span class="n">params</span><span class="o">.</span><span class="n">inputfile</span> <span class="o">=</span> <span class="s2">&quot;$baseDir/testdata/test.fa&quot;</span>
+<span class="o">//</span> <span class="n">the</span> <span class="s2">&quot;file method&quot;</span> <span class="n">returns</span> <span class="n">a</span> <span class="n">file</span> <span class="n">system</span> <span class="n">object</span> <span class="n">given</span> <span class="n">a</span> <span class="n">file</span> <span class="n">path</span> <span class="n">string</span>
+<span class="n">sequences_file</span> <span class="o">=</span> <span class="n">file</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">inputfile</span><span class="p">)</span>
+<span class="o">//</span> <span class="n">check</span> <span class="k">if</span> <span class="n">the</span> <span class="n">file</span> <span class="n">exists</span>
+<span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="n">sequences_file</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="p">)</span> <span class="n">exit</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Missing genome file: ${genome_file}&quot;</span>
+<span class="o">/*</span>
+ <span class="o">*</span> <span class="n">Process</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">splitting</span> <span class="n">a</span> <span class="n">fasta</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">multiple</span> <span class="n">files</span>
+ <span class="o">*/</span>
+<span class="n">process</span> <span class="n">splitSequences</span> <span class="p">{</span>
+    <span class="n">input</span><span class="p">:</span>
+    <span class="n">path</span> <span class="n">sequencesFile</span>
+    <span class="n">output</span><span class="p">:</span>
+    <span class="n">path</span> <span class="p">(</span><span class="s1">&#39;seq_*&#39;</span><span class="p">)</span>
+    <span class="o">//</span> <span class="n">simple</span> <span class="n">awk</span> <span class="n">command</span>
+    <span class="n">script</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    awk &#39;/^&gt;/{f=&quot;seq_&quot;++d} {print &gt; f}&#39; &lt; ${sequencesFile}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<span class="p">}</span>
+<span class="o">/*</span>
+ <span class="o">*</span> <span class="n">Process</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">reversing</span> <span class="n">the</span> <span class="n">sequences</span><span class="o">.</span> <span class="n">Note</span> <span class="n">the</span> <span class="n">escaped</span> <span class="n">AWK</span> <span class="n">variables</span> \<span class="o">$</span>
+ <span class="o">*/</span>
+<span class="n">process</span> <span class="n">reverseSequence</span> <span class="p">{</span>
+    <span class="n">tag</span> <span class="p">{</span> <span class="s2">&quot;${seq}&quot;</span> <span class="p">}</span>
+    <span class="n">input</span><span class="p">:</span>
+    <span class="n">path</span> <span class="n">seq</span>
+    <span class="n">output</span><span class="p">:</span>
+    <span class="n">path</span> <span class="s2">&quot;all.rev&quot;</span>
+        <span class="n">script</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    cat ${seq} | awk &#39;{if (\$1~&quot;&gt;&quot;) {print \$0} else system(&quot;echo &quot; \$0 &quot; |rev&quot;)}&#39; &gt; all.rev</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<span class="p">}</span>
+<span class="n">workflow</span> <span class="p">{</span>
+    <span class="n">splitted_seq</span>        <span class="o">=</span> <span class="n">splitSequences</span><span class="p">(</span><span class="n">sequences_file</span><span class="p">)</span>
+    <span class="o">//</span> <span class="n">Here</span> <span class="n">you</span> <span class="n">have</span> <span class="n">the</span> <span class="n">output</span> <span class="n">channel</span> <span class="k">as</span> <span class="n">a</span> <span class="n">collection</span>
+    <span class="n">splitted_seq</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>
+    <span class="o">//</span> <span class="n">Here</span> <span class="n">you</span> <span class="n">have</span> <span class="n">the</span> <span class="n">same</span> <span class="n">channel</span> <span class="n">reshaped</span> <span class="n">to</span> <span class="n">send</span> <span class="n">separately</span> <span class="n">each</span> <span class="n">value</span>
+    <span class="n">splitted_seq</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>
+    <span class="o">//</span> <span class="n">DLS2</span> <span class="n">allows</span> <span class="n">you</span> <span class="n">to</span> <span class="n">reuse</span> <span class="n">the</span> <span class="n">channels</span><span class="o">!</span> <span class="n">In</span> <span class="n">past</span> <span class="n">you</span> <span class="n">had</span> <span class="n">to</span> <span class="n">create</span> <span class="n">many</span> <span class="n">identical</span>
+    <span class="o">//</span> <span class="n">channels</span> <span class="k">for</span> <span class="n">sending</span> <span class="n">the</span> <span class="n">same</span> <span class="n">kind</span> <span class="n">of</span> <span class="n">data</span> <span class="n">to</span> <span class="n">different</span> <span class="n">processes</span>
+    <span class="n">rev_single_seq</span>      <span class="o">=</span> <span class="n">reverseSequence</span><span class="p">(</span><span class="n">splitted_seq</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 <p>Here we have two simple processes:</p>
 <ul class="simple">
 <li><p>the former splits the input fasta file into <strong>single sequences</strong>.</p></li>
 <li><p>the latter is able to <strong>reverse the position of the sequences</strong>.</p></li>
 </ul>
 <p>The input path is fed as a parameter using the script parameters <strong>${seq}</strong></p>
-<p><code class="docutils literal notranslate"><span class="pre">`{bash,</span> <span class="pre">eval=FALSE,</span> <span class="pre">echo=TRUE}</span>
-<span class="pre">params.inputfile</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>params.inputfile
+</pre></div>
+</div>
 <p><em>Note: you can get the file “test.fa” from the [githu repository of the course](https://github.com/biocorecrg/CoursesCRG_Containers_Nextflow_May_2021/tree/main/testdata)</em></p>
-<p>&lt;br&gt;
-This value can be overridden when calling the script:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`{bash,</span> <span class="pre">eval=FALSE,</span> <span class="pre">echo=TRUE}</span>
-<span class="pre">nextflow</span> <span class="pre">run</span> <span class="pre">test1.nf</span> <span class="pre">--inputfile</span> <span class="pre">another_input.fa</span>
-<span class="pre">`</span></code></p>
+<p>This value can be overridden when calling the script:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>nextflow run test1.nf --inputfile another_input.fa
+</pre></div>
+</div>
 <p>The workflow part connects the two processes so that &lt;u&gt;the output of the first process is fed as an input to the second one&lt;/u&gt;.</p>
 <p>During the execution Nextflow creates a number of temporary folders, and will this time also create a soft link to the original input file. It will then store output files locally.</p>
 <p>The output file is then <em>linked</em> in other folders for being used as input from other processes. &lt;br&gt;This avoids clashes and each process is nicely isolated from the others.</p>
-<p><code class="docutils literal notranslate"><span class="pre">`{bash,</span> <span class="pre">eval=FALSE,</span> <span class="pre">echo=TRUE}</span>
-<span class="pre">nextflow</span> <span class="pre">run</span> <span class="pre">test1.nf</span> <span class="pre">-bg</span>
-<span class="pre">N</span> <span class="pre">E</span> <span class="pre">X</span> <span class="pre">T</span> <span class="pre">F</span> <span class="pre">L</span> <span class="pre">O</span> <span class="pre">W</span>&#160; <span class="pre">~</span>&#160; <span class="pre">version</span> <span class="pre">20.07.1</span>
-<span class="pre">Launching</span> <span class="pre">`test1.nf`</span> <span class="pre">[sad_newton]</span> <span class="pre">-</span> <span class="pre">revision:</span> <span class="pre">82e66714e4</span>
-<span class="pre">[09/53e071]</span> <span class="pre">Submitted</span> <span class="pre">process</span> <span class="pre">&gt;</span> <span class="pre">splitSequences</span>
-<span class="pre">[/home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/nextflow/work/09/53e071d286ed66f4020869c8977b59/seq_1,</span> <span class="pre">/home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/nextflow/work/09/53e071d286ed66f4020869c8977b59/seq_2,</span> <span class="pre">/home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/nextflow/work/09/53e071d286ed66f4020869c8977b59/seq_3]</span>
-<span class="pre">/home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/nextflow/work/09/53e071d286ed66f4020869c8977b59/seq_1</span>
-<span class="pre">/home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/nextflow/work/09/53e071d286ed66f4020869c8977b59/seq_2</span>
-<span class="pre">/home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/nextflow/work/09/53e071d286ed66f4020869c8977b59/seq_3</span>
-<span class="pre">[fe/0a8640]</span> <span class="pre">Submitted</span> <span class="pre">process</span> <span class="pre">&gt;</span> <span class="pre">reverseSequence</span> <span class="pre">([seq_1,</span> <span class="pre">seq_2,</span> <span class="pre">seq_3])</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>nextflow run test1.nf -bg
+N E X T F L O W  ~  version 20.07.1
+Launching `test1.nf` [sad_newton] - revision: 82e66714e4
+[09/53e071] Submitted process &gt; splitSequences
+[/home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/nextflow/work/09/53e071d286ed66f4020869c8977b59/seq_1, /home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/nextflow/work/09/53e071d286ed66f4020869c8977b59/seq_2, /home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/nextflow/work/09/53e071d286ed66f4020869c8977b59/seq_3]
+/home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/nextflow/work/09/53e071d286ed66f4020869c8977b59/seq_1
+/home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/nextflow/work/09/53e071d286ed66f4020869c8977b59/seq_2
+/home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/nextflow/work/09/53e071d286ed66f4020869c8977b59/seq_3
+[fe/0a8640] Submitted process &gt; reverseSequence ([seq_1, seq_2, seq_3])
+</pre></div>
+</div>
 <p>We can inspect the content of <cite>work/09/53e071*</cite> generated by the process <strong>splitSequences</strong>:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`{bash,</span> <span class="pre">eval=FALSE,</span> <span class="pre">echo=TRUE}</span>
-<span class="pre">ls</span> <span class="pre">-l</span> <span class="pre">work/09/53e071*</span>
-<span class="pre">total</span> <span class="pre">24</span>
-<span class="pre">-rw-r--r--</span>&#160; <span class="pre">1</span> <span class="pre">lcozzuto</span>&#160; <span class="pre">staff</span>&#160; <span class="pre">29</span> <span class="pre">Oct</span>&#160; <span class="pre">8</span> <span class="pre">19:16</span> <span class="pre">seq_1</span>
-<span class="pre">-rw-r--r--</span>&#160; <span class="pre">1</span> <span class="pre">lcozzuto</span>&#160; <span class="pre">staff</span>&#160; <span class="pre">33</span> <span class="pre">Oct</span>&#160; <span class="pre">8</span> <span class="pre">19:16</span> <span class="pre">seq_2</span>
-<span class="pre">-rw-r--r--</span>&#160; <span class="pre">1</span> <span class="pre">lcozzuto</span>&#160; <span class="pre">staff</span>&#160; <span class="pre">27</span> <span class="pre">Oct</span>&#160; <span class="pre">8</span> <span class="pre">19:16</span> <span class="pre">seq_3</span>
-<span class="pre">lrwxr-xr-x</span>&#160; <span class="pre">1</span> <span class="pre">lcozzuto</span>&#160; <span class="pre">staff</span>&#160; <span class="pre">69</span> <span class="pre">Oct</span>&#160; <span class="pre">8</span> <span class="pre">19:16</span> <span class="pre">test.fa</span> <span class="pre">-&gt;</span> <span class="pre">/home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/nextflow/testdata/test.fa</span>
-<span class="pre">`</span></code></p>
-<p>File <cite>test.fa</cite> is a <em>soft link</em> to the original input.
-&lt;br&gt;
-If now we inspect <cite>work/fe/0a8640*</cite> that is generated by the process <strong>reverseSequence</strong>, we see that the files generated by <strong>splitSequences</strong> are now linked as input.</p>
-<p><code class="docutils literal notranslate"><span class="pre">`{bash,</span> <span class="pre">eval=FALSE,</span> <span class="pre">echo=TRUE}</span>
-<span class="pre">ls</span> <span class="pre">-l</span> <span class="pre">work/fe/0a8640*</span>
-<span class="pre">total</span> <span class="pre">8</span>
-<span class="pre">-rw-r--r--</span>&#160; <span class="pre">1</span> <span class="pre">lcozzuto</span>&#160; <span class="pre">staff</span>&#160; <span class="pre">89</span> <span class="pre">Oct</span>&#160; <span class="pre">8</span> <span class="pre">19:16</span> <span class="pre">all.rev</span>
-<span class="pre">lrwxr-xr-x</span>&#160; <span class="pre">1</span> <span class="pre">lcozzuto</span>&#160; <span class="pre">staff</span>&#160; <span class="pre">97</span> <span class="pre">Oct</span>&#160; <span class="pre">8</span> <span class="pre">19:16</span> <span class="pre">seq_1</span> <span class="pre">-&gt;</span> <span class="pre">/home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/nextflow/work/09/53e071d286ed66f4020869c8977b59/seq_1</span>
-<span class="pre">lrwxr-xr-x</span>&#160; <span class="pre">1</span> <span class="pre">lcozzuto</span>&#160; <span class="pre">staff</span>&#160; <span class="pre">97</span> <span class="pre">Oct</span>&#160; <span class="pre">8</span> <span class="pre">19:16</span> <span class="pre">seq_2</span> <span class="pre">-&gt;</span> <span class="pre">/home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/nextflow/work/09/53e071d286ed66f4020869c8977b59/seq_2</span>
-<span class="pre">lrwxr-xr-x</span>&#160; <span class="pre">1</span> <span class="pre">lcozzuto</span>&#160; <span class="pre">staff</span>&#160; <span class="pre">97</span> <span class="pre">Oct</span>&#160; <span class="pre">8</span> <span class="pre">19:16</span> <span class="pre">seq_3</span> <span class="pre">-&gt;</span> <span class="pre">/home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/nextflow/work/09/53e071d286ed66f4020869c8977b59/seq_3</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span> <span class="o">-</span><span class="n">l</span> <span class="n">work</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mf">53e071</span><span class="o">*</span>
+<span class="n">total</span> <span class="mi">24</span>
+<span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span>  <span class="mi">1</span> <span class="n">lcozzuto</span>  <span class="n">staff</span>  <span class="mi">29</span> <span class="n">Oct</span>  <span class="mi">8</span> <span class="mi">19</span><span class="o">:</span><span class="mi">16</span> <span class="n">seq_1</span>
+<span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span>  <span class="mi">1</span> <span class="n">lcozzuto</span>  <span class="n">staff</span>  <span class="mi">33</span> <span class="n">Oct</span>  <span class="mi">8</span> <span class="mi">19</span><span class="o">:</span><span class="mi">16</span> <span class="n">seq_2</span>
+<span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span>  <span class="mi">1</span> <span class="n">lcozzuto</span>  <span class="n">staff</span>  <span class="mi">27</span> <span class="n">Oct</span>  <span class="mi">8</span> <span class="mi">19</span><span class="o">:</span><span class="mi">16</span> <span class="n">seq_3</span>
+<span class="n">lrwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span>  <span class="mi">1</span> <span class="n">lcozzuto</span>  <span class="n">staff</span>  <span class="mi">69</span> <span class="n">Oct</span>  <span class="mi">8</span> <span class="mi">19</span><span class="o">:</span><span class="mi">16</span> <span class="n">test</span><span class="p">.</span><span class="n">fa</span> <span class="o">-&gt;</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ec2</span><span class="o">-</span><span class="n">user</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">CoursesCRG_Containers_Nextflow_May_2021</span><span class="o">/</span><span class="n">nextflow</span><span class="o">/</span><span class="n">nextflow</span><span class="o">/</span><span class="n">testdata</span><span class="o">/</span><span class="n">test</span><span class="p">.</span><span class="n">fa</span>
+</pre></div>
+</div>
+<p>File <cite>test.fa</cite> is a <em>soft link</em> to the original input.</p>
+<p>If now we inspect <cite>work/fe/0a8640*</cite> that is generated by the process <strong>reverseSequence</strong>, we see that the files generated by <strong>splitSequences</strong> are now linked as input.</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span> <span class="o">-</span><span class="n">l</span> <span class="n">work</span><span class="o">/</span><span class="n">fe</span><span class="o">/</span><span class="mi">0</span><span class="n">a8640</span><span class="o">*</span>
+<span class="n">total</span> <span class="mi">8</span>
+<span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span>  <span class="mi">1</span> <span class="n">lcozzuto</span>  <span class="n">staff</span>  <span class="mi">89</span> <span class="n">Oct</span>  <span class="mi">8</span> <span class="mi">19</span><span class="o">:</span><span class="mi">16</span> <span class="kr">all</span><span class="p">.</span><span class="n">rev</span>
+<span class="n">lrwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span>  <span class="mi">1</span> <span class="n">lcozzuto</span>  <span class="n">staff</span>  <span class="mi">97</span> <span class="n">Oct</span>  <span class="mi">8</span> <span class="mi">19</span><span class="o">:</span><span class="mi">16</span> <span class="n">seq_1</span> <span class="o">-&gt;</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ec2</span><span class="o">-</span><span class="n">user</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">CoursesCRG_Containers_Nextflow_May_2021</span><span class="o">/</span><span class="n">nextflow</span><span class="o">/</span><span class="n">nextflow</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mf">53e071</span><span class="n">d286ed66f4020869c8977b59</span><span class="o">/</span><span class="n">seq_1</span>
+<span class="n">lrwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span>  <span class="mi">1</span> <span class="n">lcozzuto</span>  <span class="n">staff</span>  <span class="mi">97</span> <span class="n">Oct</span>  <span class="mi">8</span> <span class="mi">19</span><span class="o">:</span><span class="mi">16</span> <span class="n">seq_2</span> <span class="o">-&gt;</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ec2</span><span class="o">-</span><span class="n">user</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">CoursesCRG_Containers_Nextflow_May_2021</span><span class="o">/</span><span class="n">nextflow</span><span class="o">/</span><span class="n">nextflow</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mf">53e071</span><span class="n">d286ed66f4020869c8977b59</span><span class="o">/</span><span class="n">seq_2</span>
+<span class="n">lrwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span>  <span class="mi">1</span> <span class="n">lcozzuto</span>  <span class="n">staff</span>  <span class="mi">97</span> <span class="n">Oct</span>  <span class="mi">8</span> <span class="mi">19</span><span class="o">:</span><span class="mi">16</span> <span class="n">seq_3</span> <span class="o">-&gt;</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ec2</span><span class="o">-</span><span class="n">user</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">CoursesCRG_Containers_Nextflow_May_2021</span><span class="o">/</span><span class="n">nextflow</span><span class="o">/</span><span class="n">nextflow</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mf">53e071</span><span class="n">d286ed66f4020869c8977b59</span><span class="o">/</span><span class="n">seq_3</span>
+</pre></div>
+</div>
 <p>At this point we can make two different workflows to demonstrate how the new DSL allows reusing of the code.</p>
-<p><a href="#id93"><span class="problematic" id="id94">``</span></a><a href="#id95"><span class="problematic" id="id96">`</span></a>{java, eval=FALSE, echo=TRUE}
-#!/usr/bin/env nextflow
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>#!/usr/bin/env nextflow
 nextflow.enable.dsl=2
-// this can be overridden by using –inputfile OTHERFILENAME
-params.inputfile = “$baseDir/testdata/test.fa”
-// the “file method” returns a file system object given a file path string
+// this can be overridden by using --inputfile OTHERFILENAME
+params.inputfile = &quot;$baseDir/testdata/test.fa&quot;
+// the &quot;file method&quot; returns a file system object given a file path string
 sequences_file = file(params.inputfile)
 // check if the file exists
-if( !sequences_file.exists() ) exit 1, “Missing genome file: ${genome_file}”
-/*</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Process 1 for splitting a fasta file in multiple files</p></li>
-</ul>
-<p><a href="#id97"><span class="problematic" id="id98">*</span></a>/</p>
-</div></blockquote>
-<dl class="simple">
-<dt>process splitSequences {</dt><dd><p>input:
-path sequencesFile
-output:
-path (‘seq_*’)
-// simple awk command
-script:
-“””
-awk ‘/^&gt;/{f=”<a href="#id137"><span class="problematic" id="id138">seq_</span></a>”++d} {print &gt; f}’ &lt; ${sequencesFile}
-“””</p>
-</dd>
-</dl>
-<p>}
-/*</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Process 2 for reversing the sequences</p></li>
-</ul>
-<p><a href="#id99"><span class="problematic" id="id100">*</span></a>/</p>
-</div></blockquote>
-<dl>
-<dt>process reverseSequence {</dt><dd><p>tag { “${seq}” }
-input:
-path seq
-output:
-path “all.rev”</p>
-<blockquote>
-<div><p>script:</p>
-</div></blockquote>
-<p>“””
-cat ${seq} | awk ‘{if ($1~”&gt;”) {print $0} else system(“echo ” $0 ” <a href="#id101"><span class="problematic" id="id102">|</span></a>rev”)}’ &gt; all.rev
-“””</p>
-</dd>
-</dl>
-<p>}
-workflow flow1 {</p>
-<blockquote>
-<div><p>take: sequences
-main:
-splitted_seq        = splitSequences(sequences)
-rev_single_seq      = reverseSequence(splitted_seq)</p>
-</div></blockquote>
-<p>}
-workflow flow2 {</p>
-<blockquote>
-<div><p>take: sequences
-main:
-splitted_seq        = splitSequences(sequences).flatten()
-rev_single_seq      = reverseSequence(splitted_seq)</p>
-</div></blockquote>
-<p>}
-workflow {</p>
-<blockquote>
-<div><p>flow1(sequences_file)
-flow2(sequences_file)</p>
-</div></blockquote>
-</section>
-<section id="id103">
-<h3>}<a class="headerlink" href="#id103" title="Permalink to this headline"></a></h3>
+if( !sequences_file.exists() ) exit 1, &quot;Missing genome file: ${genome_file}&quot;
+/*
+ * Process 1 for splitting a fasta file in multiple files
+ */
+process splitSequences {
+    input:
+    path sequencesFile
+    output:
+    path (&#39;seq_*&#39;)
+    // simple awk command
+    script:
+    &quot;&quot;&quot;
+    awk &#39;/^&gt;/{f=&quot;seq_&quot;++d} {print &gt; f}&#39; &lt; ${sequencesFile}
+    &quot;&quot;&quot;
+}
+/*
+ * Process 2 for reversing the sequences
+ */
+process reverseSequence {
+    tag { &quot;${seq}&quot; }
+    input:
+    path seq
+    output:
+    path &quot;all.rev&quot;
+        script:
+    &quot;&quot;&quot;
+    cat ${seq} | awk &#39;{if (\$1~&quot;&gt;&quot;) {print \$0} else system(&quot;echo &quot; \$0 &quot; |rev&quot;)}&#39; &gt; all.rev
+    &quot;&quot;&quot;
+}
+workflow flow1 {
+    take: sequences
+    main:
+    splitted_seq        = splitSequences(sequences)
+    rev_single_seq      = reverseSequence(splitted_seq)
+}
+workflow flow2 {
+    take: sequences
+    main:
+    splitted_seq        = splitSequences(sequences).flatten()
+    rev_single_seq      = reverseSequence(splitted_seq)
+}
+workflow {
+   flow1(sequences_file)
+   flow2(sequences_file)
+}
+</pre></div>
+</div>
 <p>The first workflow will just run like the previous script, while the second will “flatten” the output of the first process and will launch the second process on each single sequence.</p>
 <p>The <strong>reverseSequence</strong> process of the second workflow will run in parallel if you have enough processors, or if you are running the script in a cluster environment with a scheduler supported by Nextflow.</p>
-<p><code class="docutils literal notranslate"><span class="pre">`{bash,</span> <span class="pre">eval=FALSE,</span> <span class="pre">echo=TRUE}</span>
-<span class="pre">nextflow</span> <span class="pre">run</span> <span class="pre">test1.nf</span> <span class="pre">-bg</span>
-<span class="pre">C02WX1XFHV2Q:nextflow</span> <span class="pre">lcozzuto$</span> <span class="pre">N</span> <span class="pre">E</span> <span class="pre">X</span> <span class="pre">T</span> <span class="pre">F</span> <span class="pre">L</span> <span class="pre">O</span> <span class="pre">W</span>&#160; <span class="pre">~</span>&#160; <span class="pre">version</span> <span class="pre">20.07.1</span>
-<span class="pre">Launching</span> <span class="pre">`test1.nf`</span> <span class="pre">[insane_plateau]</span> <span class="pre">-</span> <span class="pre">revision:</span> <span class="pre">d33befe154</span>
-<span class="pre">[bd/f4e9a6]</span> <span class="pre">Submitted</span> <span class="pre">process</span> <span class="pre">&gt;</span> <span class="pre">flow1:splitSequences</span>
-<span class="pre">[37/d790ab]</span> <span class="pre">Submitted</span> <span class="pre">process</span> <span class="pre">&gt;</span> <span class="pre">flow2:splitSequences</span>
-<span class="pre">[33/a6fc72]</span> <span class="pre">Submitted</span> <span class="pre">process</span> <span class="pre">&gt;</span> <span class="pre">flow1:reverseSequence</span> <span class="pre">([seq_1,</span> <span class="pre">seq_2,</span> <span class="pre">seq_3])</span>
-<span class="pre">[87/54bfe8]</span> <span class="pre">Submitted</span> <span class="pre">process</span> <span class="pre">&gt;</span> <span class="pre">flow2:reverseSequence</span> <span class="pre">(seq_2)</span>
-<span class="pre">[45/86dd83]</span> <span class="pre">Submitted</span> <span class="pre">process</span> <span class="pre">&gt;</span> <span class="pre">flow2:reverseSequence</span> <span class="pre">(seq_1)</span>
-<span class="pre">[93/c7b1c6]</span> <span class="pre">Submitted</span> <span class="pre">process</span> <span class="pre">&gt;</span> <span class="pre">flow2:reverseSequence</span> <span class="pre">(seq_3)</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>nextflow run test1.nf -bg
+C02WX1XFHV2Q:nextflow lcozzuto$ N E X T F L O W  ~  version 20.07.1
+Launching `test1.nf` [insane_plateau] - revision: d33befe154
+[bd/f4e9a6] Submitted process &gt; flow1:splitSequences
+[37/d790ab] Submitted process &gt; flow2:splitSequences
+[33/a6fc72] Submitted process &gt; flow1:reverseSequence ([seq_1, seq_2, seq_3])
+[87/54bfe8] Submitted process &gt; flow2:reverseSequence (seq_2)
+[45/86dd83] Submitted process &gt; flow2:reverseSequence (seq_1)
+[93/c7b1c6] Submitted process &gt; flow2:reverseSequence (seq_3)
+</pre></div>
+</div>
 <p>## Directives</p>
 <p>The [<strong>directives</strong>](<a class="reference external" href="https://www.nextflow.io/docs/latest/process.html#directives">https://www.nextflow.io/docs/latest/process.html#directives</a>) are declaration blocks that can provide optional settings to a process. &lt;br&gt;
 For instance, they can affect the way a process stages in and out the input and output files ([<strong>stageInMode</strong>](<a class="reference external" href="https://www.nextflow.io/docs/latest/process.html#stageinmode">https://www.nextflow.io/docs/latest/process.html#stageinmode</a>) and [<strong>stageOutMode</strong>](<a class="reference external" href="https://www.nextflow.io/docs/latest/process.html#stageoutmode">https://www.nextflow.io/docs/latest/process.html#stageoutmode</a>)), or they can indicate which file has to be considered a final result and in which folder it should be published ([<strong>publishDir</strong>](<a class="reference external" href="https://www.nextflow.io/docs/latest/process.html#publishdir">https://www.nextflow.io/docs/latest/process.html#publishdir</a>)).</p>
 <p>We can add the directive [<cite>publishDir</cite>](<a class="reference external" href="https://www.nextflow.io/docs/latest/process.html#publishdir">https://www.nextflow.io/docs/latest/process.html#publishdir</a>) to our previous example:</p>
-<p><a href="#id104"><span class="problematic" id="id105">``</span></a><a href="#id106"><span class="problematic" id="id107">`</span></a>{java, eval=FALSE, echo=TRUE}
-/*</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Simple reverse the sequences</p></li>
-</ul>
-<p><a href="#id108"><span class="problematic" id="id109">*</span></a>/</p>
-</div></blockquote>
-<dl>
-<dt>process reverseSequence {</dt><dd><p>tag “$seq” // during the execution prints the indicated variable for follow-up
-publishDir “output”
-input:
-path seq
-output:
-path “all.rev”</p>
-<blockquote>
-<div><p>script:</p>
-</div></blockquote>
-<p>“””
-cat ${seq} | awk ‘{if ($1~”&gt;”) {print $0} else system(“echo ” $0 ” <a href="#id110"><span class="problematic" id="id111">|</span></a>rev”)}’ &gt; all.rev
-“””</p>
-</dd>
-</dl>
-</section>
-<section id="id112">
-<h3>}<a class="headerlink" href="#id112" title="Permalink to this headline"></a></h3>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span>
+ <span class="o">*</span> <span class="n">Simple</span> <span class="n">reverse</span> <span class="n">the</span> <span class="n">sequences</span>
+ <span class="o">*/</span>
+
+<span class="n">process</span> <span class="n">reverseSequence</span> <span class="p">{</span>
+    <span class="n">tag</span> <span class="s2">&quot;$seq&quot;</span> <span class="o">//</span> <span class="n">during</span> <span class="n">the</span> <span class="n">execution</span> <span class="nb">prints</span> <span class="n">the</span> <span class="n">indicated</span> <span class="n">variable</span> <span class="k">for</span> <span class="n">follow</span><span class="o">-</span><span class="n">up</span>
+    <span class="n">publishDir</span> <span class="s2">&quot;output&quot;</span>
+    <span class="n">input</span><span class="p">:</span>
+    <span class="n">path</span> <span class="n">seq</span>
+    <span class="n">output</span><span class="p">:</span>
+    <span class="n">path</span> <span class="s2">&quot;all.rev&quot;</span>
+
+        <span class="n">script</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    cat ${seq} | awk &#39;{if (\$1~&quot;&gt;&quot;) {print \$0} else system(&quot;echo &quot; \$0 &quot; |rev&quot;)}&#39; &gt; all.rev</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 <p>We can also use [<cite>storeDir</cite>](<a class="reference external" href="https://www.nextflow.io/docs/latest/process.html#storedir">https://www.nextflow.io/docs/latest/process.html#storedir</a>) in case we want to have a permanent cache. &lt;br&gt;</p>
 <p>The process is executed only if the output files do not exist in the folder specified by <strong>storeDir</strong>.&lt;br&gt;
 When the output files exist, the process execution is skipped and these files are used as the actual process result.&lt;br&gt;</p>
@@ -855,57 +714,38 @@ When the output files exist, the process execution is skipped and these files ar
 &lt;br&gt;
 We can also indicate what to do in case a process fails.&lt;br&gt;</p>
 <p>The default is to stop the pipeline and to raise an error. But we can also skip the process using the [<cite>errorStrategy</cite>](<a class="reference external" href="https://www.nextflow.io/docs/latest/process.html#errorstrategy">https://www.nextflow.io/docs/latest/process.html#errorstrategy</a>) directive:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`{java,</span> <span class="pre">eval=FALSE,</span> <span class="pre">echo=TRUE}</span>
-<span class="pre">errorStrategy</span> <span class="pre">'ignore'</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>errorStrategy &#39;ignore&#39;
+</pre></div>
+</div>
 <p>or retry a number of times changing something like the memory available or the maximum execution time. &lt;br&gt;
 This time we need a number of directives:</p>
-<dl class="simple">
-<dt><a href="#id113"><span class="problematic" id="id114">``</span></a><a href="#id115"><span class="problematic" id="id116">`</span></a>{java, eval=FALSE, echo=TRUE}</dt><dd><p>memory { 1.GB * task.attempt }
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>memory { 1.GB * task.attempt }
 time { 1.hour * task.attempt }
-errorStrategy ‘retry’
-maxRetries 3</p>
-</dd>
-</dl>
-<p><a href="#id117"><span class="problematic" id="id118">``</span></a><a href="#id119"><span class="problematic" id="id120">`</span></a></p>
+errorStrategy &#39;retry&#39;
+maxRetries 3
+</pre></div>
+</div>
 <p>## Resuming your pipeline</p>
 <p>You can resume the execution after the code modification using the parameter <strong>-resume</strong>. &lt;br&gt;
 Nextflow is smart enough to cache the execution since input and output were not changed.</p>
-<p><code class="docutils literal notranslate"><span class="pre">`{bash,</span> <span class="pre">eval=FALSE,</span> <span class="pre">echo=TRUE}</span>
-<span class="pre">nextflow</span> <span class="pre">run</span> <span class="pre">test1.nf</span> <span class="pre">-bg</span> <span class="pre">-resume</span>
-<span class="pre">N</span> <span class="pre">E</span> <span class="pre">X</span> <span class="pre">T</span> <span class="pre">F</span> <span class="pre">L</span> <span class="pre">O</span> <span class="pre">W</span>&#160; <span class="pre">~</span>&#160; <span class="pre">version</span> <span class="pre">20.07.1</span>
-<span class="pre">Launching</span> <span class="pre">`test1.nf`</span> <span class="pre">[determined_celsius]</span> <span class="pre">-</span> <span class="pre">revision:</span> <span class="pre">eaf5b4d673</span>
-<span class="pre">[bd/f4e9a6]</span> <span class="pre">Cached</span> <span class="pre">process</span> <span class="pre">&gt;</span> <span class="pre">flow1:splitSequences</span>
-<span class="pre">[37/d790ab]</span> <span class="pre">Cached</span> <span class="pre">process</span> <span class="pre">&gt;</span> <span class="pre">flow2:splitSequences</span>
-<span class="pre">[93/c7b1c6]</span> <span class="pre">Cached</span> <span class="pre">process</span> <span class="pre">&gt;</span> <span class="pre">flow2:reverseSequence</span> <span class="pre">(seq_3)</span>
-<span class="pre">[45/86dd83]</span> <span class="pre">Cached</span> <span class="pre">process</span> <span class="pre">&gt;</span> <span class="pre">flow2:reverseSequence</span> <span class="pre">(seq_1)</span>
-<span class="pre">[87/54bfe8]</span> <span class="pre">Cached</span> <span class="pre">process</span> <span class="pre">&gt;</span> <span class="pre">flow2:reverseSequence</span> <span class="pre">(seq_2)</span>
-<span class="pre">[33/a6fc72]</span> <span class="pre">Cached</span> <span class="pre">process</span> <span class="pre">&gt;</span> <span class="pre">flow1:reverseSequence</span> <span class="pre">([seq_1,</span> <span class="pre">seq_2,</span> <span class="pre">seq_3])</span>
-<span class="pre">/home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/nextflow/work/33/a6fc72786d042cacf733034d501691/all.rev</span>
-<span class="pre">`</span></code></p>
 <p><strong>IMPORTANT: Nextflow parameters are with one hyphen</strong> (<cite>-resume</cite>) <strong>while pipeline parameters are with two</strong> (<cite>–inputfile</cite>)</p>
 <p>Sometimes you might want to resume a previous run of your pipeline. &lt;br&gt;
 For doing so you need to extract the job id of that run. You can do this by using the command <cite>nextflow log</cite></p>
-<p><code class="docutils literal notranslate"><span class="pre">`{bash,</span> <span class="pre">eval=FALSE,</span> <span class="pre">echo=TRUE}</span>
-<span class="pre">nextflow</span> <span class="pre">log</span>
-<span class="pre">TIMESTAMP</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">DURATION</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">RUN</span> <span class="pre">NAME</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">STATUS</span>&#160; <span class="pre">REVISION</span> <span class="pre">ID</span>&#160;&#160;&#160;&#160; <span class="pre">SESSION</span> <span class="pre">ID</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">COMMAND</span>
-<span class="pre">2020-10-06</span> <span class="pre">14:49:09</span>&#160;&#160;&#160;&#160; <span class="pre">2s</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">agitated_avogadro</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">OK</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">61a595c5bf</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">4a7a8a4b-9bdb-4b15-9cc6-1b2cabe9a938</span>&#160;&#160;&#160; <span class="pre">nextflow</span> <span class="pre">run</span> <span class="pre">test1.nf</span>
-<span class="pre">2020-10-08</span> <span class="pre">19:14:38</span>&#160;&#160;&#160;&#160; <span class="pre">2.8s</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">sick_edison</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">OK</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">82e66714e4</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">4fabb863-2038-47b4-bac0-19e71f93f284</span>&#160;&#160;&#160; <span class="pre">nextflow</span> <span class="pre">run</span> <span class="pre">test1.nf</span> <span class="pre">-bg</span>
-<span class="pre">2020-10-08</span> <span class="pre">19:16:03</span>&#160;&#160;&#160;&#160; <span class="pre">3s</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">sad_newton</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">OK</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">82e66714e4</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">2d13e9f8-1ba6-422d-9087-5c6c9731a795</span>&#160;&#160;&#160; <span class="pre">nextflow</span> <span class="pre">run</span> <span class="pre">test1.nf</span> <span class="pre">-bg</span>
-<span class="pre">2020-10-08</span> <span class="pre">19:30:59</span>&#160;&#160;&#160;&#160; <span class="pre">2.3s</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">disturbed_wozniak</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">OK</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">d33befe154</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">0a19b60d-d5fe-4a26-9e01-7a63d0a1d300</span>&#160;&#160;&#160; <span class="pre">nextflow</span> <span class="pre">run</span> <span class="pre">test1.nf</span> <span class="pre">-bg</span>
-<span class="pre">2020-10-08</span> <span class="pre">19:35:52</span>&#160;&#160;&#160;&#160; <span class="pre">2.5s</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">insane_plateau</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">OK</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">d33befe154</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">b359f32c-254f-4271-95bb-6a91b281dc6d</span>&#160;&#160;&#160; <span class="pre">nextflow</span> <span class="pre">run</span> <span class="pre">test1.nf</span> <span class="pre">-bg</span>
-<span class="pre">2020-10-08</span> <span class="pre">19:56:30</span>&#160;&#160;&#160;&#160; <span class="pre">2.8s</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">determined_celsius</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">OK</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">eaf5b4d673</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">b359f32c-254f-4271-95bb-6a91b281dc6d</span>&#160;&#160;&#160; <span class="pre">nextflow</span> <span class="pre">run</span> <span class="pre">test1.nf</span> <span class="pre">-bg</span> <span class="pre">-resume</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>nextflow log
+TIMESTAMP               DURATION        RUN NAME                STATUS  REVISION ID     SESSION ID                              COMMAND
+2020-10-06 14:49:09     2s              agitated_avogadro       OK      61a595c5bf      4a7a8a4b-9bdb-4b15-9cc6-1b2cabe9a938    nextflow run test1.nf
+2020-10-08 19:14:38     2.8s            sick_edison             OK      82e66714e4      4fabb863-2038-47b4-bac0-19e71f93f284    nextflow run test1.nf -bg
+2020-10-08 19:16:03     3s              sad_newton              OK      82e66714e4      2d13e9f8-1ba6-422d-9087-5c6c9731a795    nextflow run test1.nf -bg
+2020-10-08 19:30:59     2.3s            disturbed_wozniak       OK      d33befe154      0a19b60d-d5fe-4a26-9e01-7a63d0a1d300    nextflow run test1.nf -bg
+2020-10-08 19:35:52     2.5s            insane_plateau          OK      d33befe154      b359f32c-254f-4271-95bb-6a91b281dc6d    nextflow run test1.nf -bg
+2020-10-08 19:56:30     2.8s            determined_celsius      OK      eaf5b4d673      b359f32c-254f-4271-95bb-6a91b281dc6d    nextflow run test1.nf -bg -resume
+</pre></div>
+</div>
 <p>You can then resume the state of your execution using the <strong>SESSION ID</strong>:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`{bash,</span> <span class="pre">eval=FALSE,</span> <span class="pre">echo=TRUE}</span>
-<span class="pre">nextflow</span> <span class="pre">run</span> <span class="pre">-resume</span> <span class="pre">0a19b60d-d5fe-4a26-9e01-7a63d0a1d300</span> <span class="pre">test1.nf</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>nextflow run -resume 0a19b60d-d5fe-4a26-9e01-7a63d0a1d300 test1.nf
+</pre></div>
+</div>
 <p>Nextflow’s cache can be disabled for a specific process adding setting the directive <strong>cache</strong> to <strong>false</strong>. You can also choose three caching methods:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`{bash,</span> <span class="pre">eval=FALSE,</span> <span class="pre">echo=TRUE}</span>
-<span class="pre">cache</span> <span class="pre">=</span> <span class="pre">true</span> <span class="pre">//</span> <span class="pre">(default)</span> <span class="pre">Cache</span> <span class="pre">keys</span> <span class="pre">are</span> <span class="pre">created</span> <span class="pre">indexing</span> <span class="pre">input</span> <span class="pre">files</span> <span class="pre">meta-data</span> <span class="pre">information</span> <span class="pre">(name,</span> <span class="pre">size</span> <span class="pre">and</span> <span class="pre">last</span> <span class="pre">update</span> <span class="pre">timestamp</span> <span class="pre">attributes).</span>
-<span class="pre">cache</span> <span class="pre">=</span> <span class="pre">'deep'</span> <span class="pre">//</span> <span class="pre">Cache</span> <span class="pre">keys</span> <span class="pre">are</span> <span class="pre">created</span> <span class="pre">indexing</span> <span class="pre">input</span> <span class="pre">files</span> <span class="pre">content.</span>
-<span class="pre">cache</span> <span class="pre">=</span> <span class="pre">'lenient'</span> <span class="pre">//</span> <span class="pre">(Best</span> <span class="pre">in</span> <span class="pre">HPC</span> <span class="pre">and</span> <span class="pre">shared</span> <span class="pre">file</span> <span class="pre">systems)</span> <span class="pre">Cache</span> <span class="pre">keys</span> <span class="pre">are</span> <span class="pre">created</span> <span class="pre">indexing</span> <span class="pre">input</span> <span class="pre">files</span> <span class="pre">path</span> <span class="pre">and</span> <span class="pre">size</span> <span class="pre">attributes</span>
-<span class="pre">`</span></code></p>
 <p><strong>IMPORTANT On some shared file systems you might have inconsistent file timestamps. So cache lenient prevents you from unwanted restarting of cached processes.</strong></p>
 <p>## EXERCISE 3</p>
 <p>Try to make the previous pipeline resilient to the failing of a process and store the results in order to skip the process execution when launched again.</p>
@@ -914,33 +754,6 @@ For doing so you need to extract the job id of that run. You can do this by usin
 &lt;summary&gt;
 &lt;h5 style=”background-color: #e6fadc; display: inline-block;”&gt;*Answer*&lt;/h5&gt;
 &lt;/summary&gt;</p>
-<p><a href="#id121"><span class="problematic" id="id122">``</span></a><a href="#id123"><span class="problematic" id="id124">`</span></a>{java, eval=FALSE, echo=TRUE}
-/*</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Broken process</p></li>
-</ul>
-<p><a href="#id125"><span class="problematic" id="id126">*</span></a>/</p>
-</div></blockquote>
-<dl>
-<dt>process reverseSequence {</dt><dd><p>tag { “${seq}” }
-publishDir “output”
-errorStrategy ‘ignore’
-input:
-path seq
-output:
-path “all.rev”</p>
-<blockquote>
-<div><p>script:</p>
-</div></blockquote>
-<p>“””
-cat ${seq} | AAAAAAA ‘{if ($1~”&gt;”) {print $0} else system(“echo ” $0 ” <a href="#id127"><span class="problematic" id="id128">|</span></a>rev”)}’ &gt; all.rev
-“””</p>
-</dd>
-</dl>
-</section>
-<section id="id129">
-<h3>}<a class="headerlink" href="#id129" title="Permalink to this headline"></a></h3>
 <p>&lt;/details&gt;</p>
 <p>Write the first workflow using pipes. Nextflow DLS2 allows you to use pipes for connecting channels via input / output.
 &lt;br&gt;See the [documentation on pipes](<a class="reference external" href="https://www.nextflow.io/docs/latest/dsl2.html#pipes">https://www.nextflow.io/docs/latest/dsl2.html#pipes</a>).</p>
@@ -948,18 +761,7 @@ cat ${seq} | AAAAAAA ‘{if ($1~”&gt;”) {print $0} else system(“echo ” $
 &lt;summary&gt;
 &lt;h5 style=”background-color: #e6fadc; display: inline-block;”&gt;*Answer*&lt;/h5&gt;
 &lt;/summary&gt;</p>
-<p><a href="#id130"><span class="problematic" id="id131">``</span></a><a href="#id132"><span class="problematic" id="id133">`</span></a>{java, eval=FALSE, echo=TRUE}
-workflow flow1 {</p>
-<blockquote>
-<div><p>take: sequences
-main:
-splitSequences(sequences) | reverseSequence | view()</p>
-</div></blockquote>
-</section>
-<section id="id134">
-<h3>}<a class="headerlink" href="#id134" title="Permalink to this headline"></a></h3>
 <p>&lt;/details&gt;</p>
-</section>
 </section>
 </section>
 
