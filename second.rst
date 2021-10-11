@@ -18,7 +18,7 @@ An **operator** is a method that reshapes or connects different channels applyin
 
 We can write a very simple Nextflow script: save the following piece of code in the ``test0.nf`` file:
 
-.. code-block:: python
+.. code-block:: java
 
 
 	#!/usr/bin/env nextflow
