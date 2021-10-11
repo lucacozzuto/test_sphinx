@@ -69,7 +69,7 @@ highlight_language = 'Groovy'
 exclude_patterns = []
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'Groovy'
+pygments_style = None
 
 
 
