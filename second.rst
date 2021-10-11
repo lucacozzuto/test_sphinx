@@ -65,7 +65,49 @@ Let's create three empty files with the `touch` command:
 
 And let's create another script (test2.nf) and save the following code in it:
 
-.. code-block:: guess
+.. code-block:: python
+	
+	
+	#!/usr/bin/env nextflow
+
+	// enable DSL2
+	nextflow.enable.dsl=2
+	
+	/*
+	* Let's create the channel `my_files`
+	* using the method fromPath
+	*/
+	
+	Channel
+	    .fromPath( "*.txt" )
+	    .set {my_files}
+	    
+	// We can use the view() operator again to see the content of channel "my_files"
+	
+	my_files.view()
+
+.. code-block:: java
+	
+	
+	#!/usr/bin/env nextflow
+
+	// enable DSL2
+	nextflow.enable.dsl=2
+	
+	/*
+	* Let's create the channel `my_files`
+	* using the method fromPath
+	*/
+	
+	Channel
+	    .fromPath( "*.txt" )
+	    .set {my_files}
+	    
+	// We can use the view() operator again to see the content of channel "my_files"
+	
+	my_files.view()
+
+.. code-block:: Java
 	
 	
 	#!/usr/bin/env nextflow
