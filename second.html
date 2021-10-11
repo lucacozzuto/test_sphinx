@@ -122,14 +122,18 @@ bonjour
 <p>And let’s create another script (test2.nf) and save the following code in it:</p>
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>#!/usr/bin/env nextflow
 nextflow.enable.dsl=2
+
 /*
 * Let&#39;s create the channel `my_files`
 * using the method fromPath
 */
+
 Channel
     .fromPath( &quot;*.txt&quot; )
     .set {my_files}
+
 // We can use the view() operator again to see the content of channel &quot;my_files&quot;
+
 my_files.view()
 </pre></div>
 </div>
