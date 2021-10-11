@@ -39,6 +39,7 @@ release = u''
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'javasphinx',
     'sphinx.ext.autodoc',
     'sphinx.ext.githubpages'
 ]
