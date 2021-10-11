@@ -208,7 +208,45 @@ bonjour
 </pre></div>
 </div>
 <p>And let’s create another script (test2.nf) and save the following code in it:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>#!/usr/bin/env nextflow
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env nextflow</span>
+
+<span class="o">//</span> <span class="n">enable</span> <span class="n">DSL2</span>
+<span class="n">nextflow</span><span class="o">.</span><span class="n">enable</span><span class="o">.</span><span class="n">dsl</span><span class="o">=</span><span class="mi">2</span>
+
+<span class="o">/*</span>
+<span class="o">*</span> <span class="n">Let</span><span class="s1">&#39;s create the channel `my_files`</span>
+<span class="o">*</span> <span class="n">using</span> <span class="n">the</span> <span class="n">method</span> <span class="n">fromPath</span>
+<span class="o">*/</span>
+
+<span class="n">Channel</span>
+    <span class="o">.</span><span class="n">fromPath</span><span class="p">(</span> <span class="s2">&quot;*.txt&quot;</span> <span class="p">)</span>
+    <span class="o">.</span><span class="n">set</span> <span class="p">{</span><span class="n">my_files</span><span class="p">}</span>
+
+<span class="o">//</span> <span class="n">We</span> <span class="n">can</span> <span class="n">use</span> <span class="n">the</span> <span class="n">view</span><span class="p">()</span> <span class="n">operator</span> <span class="n">again</span> <span class="n">to</span> <span class="n">see</span> <span class="n">the</span> <span class="n">content</span> <span class="n">of</span> <span class="n">channel</span> <span class="s2">&quot;my_files&quot;</span>
+
+<span class="n">my_files</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>#!/usr/bin/env nextflow
+
+// enable DSL2
+nextflow.enable.dsl=2
+
+/*
+* Let&#39;s create the channel `my_files`
+* using the method fromPath
+*/
+
+Channel
+    .fromPath( &quot;*.txt&quot; )
+    .set {my_files}
+
+// We can use the view() operator again to see the content of channel &quot;my_files&quot;
+
+my_files.view()
+</pre></div>
+</div>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span>#!/usr/bin/env nextflow
 
 // enable DSL2
 nextflow.enable.dsl=2
