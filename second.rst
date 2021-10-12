@@ -18,7 +18,7 @@ An **operator** is a method that reshapes or connects different channels applyin
 
 We can write a very simple Nextflow script: save the following piece of code in the ``test0.nf`` file:
 
-.. code-block:: guess
+.. code-block:: groovy
 
 
 	#!/usr/bin/env nextflow
@@ -44,7 +44,7 @@ We can write a very simple Nextflow script: save the following piece of code in 
 
 Once the file is saved, execute it with:
 
-.. code-block:: guess
+.. code-block:: console
 
 	nextflow run test0.nf
 	N E X T F L O W  ~  version 20.07.1
@@ -58,97 +58,13 @@ As you can see the **Channel** is just a collection of values, but it can also b
 
 Let's create three empty files with the `touch` command:
 
-.. code-block:: guess
+.. code-block:: console
 
 	touch aa.txt bb.txt cc.txt
 
 
 And let's create another script (test2.nf) and save the following code in it:
 
-.. code-block:: python
-	
-	
-	#!/usr/bin/env nextflow
-
-	// enable DSL2
-	nextflow.enable.dsl=2
-	
-	/*
-	* Let's create the channel `my_files`
-	* using the method fromPath
-	*/
-	
-	Channel
-	    .fromPath( "*.txt" )
-	    .set {my_files}
-	    
-	// We can use the view() operator again to see the content of channel "my_files"
-	
-	my_files.view()
-
-.. code-block:: java
-	
-	
-	#!/usr/bin/env nextflow
-
-	// enable DSL2
-	nextflow.enable.dsl=2
-	
-	/*
-	* Let's create the channel `my_files`
-	* using the method fromPath
-	*/
-	
-	Channel
-	    .fromPath( "*.txt" )
-	    .set {my_files}
-	    
-	// We can use the view() operator again to see the content of channel "my_files"
-	
-	my_files.view()
-
-.. code-block:: Java
-	
-	
-	#!/usr/bin/env nextflow
-
-	// enable DSL2
-	nextflow.enable.dsl=2
-	
-	/*
-	* Let's create the channel `my_files`
-	* using the method fromPath
-	*/
-	
-	Channel
-	    .fromPath( "*.txt" )
-	    .set {my_files}
-	    
-	// We can use the view() operator again to see the content of channel "my_files"
-	
-	my_files.view()
-	
-.. code-block:: Groovy
-	
-	
-	#!/usr/bin/env nextflow
-
-	// enable DSL2
-	nextflow.enable.dsl=2
-	
-	/*
-	* Let's create the channel `my_files`
-	* using the method fromPath
-	*/
-	
-	Channel
-	    .fromPath( "*.txt" )
-	    .set {my_files}
-	    
-	// We can use the view() operator again to see the content of channel "my_files"
-	
-	my_files.view()
-	
 .. code-block:: groovy
 	
 	
@@ -173,7 +89,7 @@ And let's create another script (test2.nf) and save the following code in it:
 
 We can now execute `test2.nf`:
 
-.. code-block:: guess
+.. code-block:: console
 
 	nextflow run test2.nf
 	N E X T F L O W  ~  version 20.07.1
@@ -191,7 +107,7 @@ Once executed, we can see that a folder named **work** is generated: Nextflow st
 
 First create a couple of empty files:
 
-.. code-block:: guess
+.. code-block:: console
 	
 	touch aaa_1.txt aaa_2.txt
 
@@ -200,16 +116,22 @@ See here [fromFilePairs](https://www.nextflow.io/docs/latest/channel.html#fromfi
 
 ### ANSWER
 
-.. code-block:: java
+.. code-block:: groovy
+
+
 	#!/usr/bin/env nextflow
+	
 	nextflow.enable.dsl=2
+	
 	/*
 	* Let's create the channel `my_files`
 	* using the method fromFilePairs 
 	*/
+	
 	Channel
 	    .fromFilePairs( "aaa_{1,2}.txt" )
 	    .set {my_files}
+	    
 	my_files.view()
 
 
@@ -226,24 +148,30 @@ See here the list of [Operators](https://www.nextflow.io/docs/latest/operator.ht
 
 ### RESULTS
 
-.. code-block:: guess
+.. code-block:: groovy
 
 	#!/usr/bin/env nextflow
+	
 	nextflow.enable.dsl=2
+	
 	Channel
-	    .fromPath("{aa,bb,cc}.txt")
+	   .fromPath("{aa,bb,cc}.txt")
  	   .set {my_files}
+	   
 	my_files
 	    .collect()
 	    .view()
+	    
 	// You can also write it as: my_files.collect().view()
+	
 	my_files
 	    .combine(my_files)
 	    .view()
+	    
 	my_files
 	    .collect()
 	    .map{
-		["id", it]
+			["id", it]
 		}
 	    .view()
 
@@ -253,17 +181,21 @@ See here the list of [Operators](https://www.nextflow.io/docs/latest/operator.ht
 
 Let's add a process to the previous script `test0.nf` and let's call it test1.nf
 
-.. code-block:: guess
+.. code-block:: groovy
 
 	#!/usr/bin/env nextflow
+	
 	nextflow.enable.dsl=2
+	
 	str = Channel.from('hello', 'hola', 'bonjour')
+	
 	/*
 	 * Creates a process which receives an input channel containing values
 	 * Each value emitted by the channel triggers the execution
 	 * of the process. The process stdout is captured and sent over
 	 * the another channel.
 	 */
+	 
 	process printHello {
 	   tag { "${str_in}" } // this is for displaying the content of `str_in` in the log file
 	   input:        
@@ -292,11 +224,14 @@ The code as it is will not produce anything, because another part is needed that
 This part is called a **workflow**.<br>
 Let's add a workflow to our code:
 
-.. code-block:: guess
+.. code-block:: groovy
 
 	#!/usr/bin/env nextflow
+	
 	nextflow.enable.dsl=2
+	
 	str = Channel.from('hello', 'hola', 'bonjour')
+	
 	process printHello {
 	   tag { "${str_in}" }
 	   input:        
@@ -309,12 +244,11 @@ Let's add a workflow to our code:
 	   """
 	}
 	
-/*
- * A workflow consists of a number of invocations of processes
- * where they are fed with the expected input channels
- * as if they were custom functions. You can only invoke a process once per workflow.
- */
-.. code-block:: guess
+	/*
+	 * A workflow consists of a number of invocations of processes
+	 * where they are fed with the expected input channels
+	 * as if they were custom functions. You can only invoke a process once per workflow.
+	 */
 
 	workflow {
 	 result = printHello(str)
@@ -324,7 +258,7 @@ Let's add a workflow to our code:
 
 We can run the script this time sending the execution in the background (with the `-bg` option) and saving the log in the file `log.txt`.
 
-.. code-block:: guess
+.. code-block:: console
 
 	nextflow run test1.nf -bg > log.txt
 
@@ -333,7 +267,7 @@ We can run the script this time sending the execution in the background (with th
 
 Let's inspect now the log file:
 
-.. code-block:: guess
+.. code-block:: console
 
 	cat log.txt
 	
@@ -359,7 +293,7 @@ This code indicates **the path** in which the process is "isolated" and where th
 
 Let's have a look inside that folder:
 
-.. code-block:: guess
+.. code-block:: console
 
 	# Show the folder's full name
 	
@@ -393,7 +327,7 @@ You see a lot of "hidden" files:
 
 For instance the content of `.command.sh` is:
 
-.. code-block:: guess
+.. code-block:: console
 
 	cat work/6a/2dfcaf*/.command.sh
 	#!/bin/bash -ue
@@ -402,7 +336,7 @@ For instance the content of `.command.sh` is:
 
 And the content of `.command.out` is
 
-.. code-block:: guess
+.. code-block:: console
 
 	cat work/6a/2dfcaf*/.command.out
 	hola in Italian is ciao
@@ -410,28 +344,30 @@ And the content of `.command.out` is
 
 You can also give a name to workflows, so that you can combine them in the main workflow. For instance we can write:
 
-.. code-block:: guess
+.. code-block:: groovy
 
 	#!/usr/bin/env nextflow
+	
 	nextflow.enable.dsl=2
+	
 	str = Channel.from('hello', 'hola', 'bonjour')
+	
 	process printHello {
-	  tag { "${str_in}" }
- 	  input:        
-	   val str_in
-	   output:        
-	   stdout
-	   script:        
-	   """
-	   echo ${str_in} in Italian is ciao
-	   """
+		tag { "${str_in}" }
+ 	  	input:        
+	   	val str_in
+	   	output:        
+	   	stdout
+	   	script:        
+	   	"""
+	   		echo ${str_in} in Italian is ciao
+	   	"""
 	}
 
-/*
- * A workflow can be named as a function and receive an input using the take keyword
- */
+	/*
+	 * A workflow can be named as a function and receive an input using the take keyword
+	 */
 
-.. code-block:: guess
 
 	workflow first_pipeline {
  	   take: str_input
@@ -439,11 +375,10 @@ You can also give a name to workflows, so that you can combine them in the main 
 	    printHello(str_input).view()
 	}
 	
-/*
- * You can re-use the previous processes and combine as you prefer
- */
+	/*
+	 * You can re-use the previous processes and combine as you prefer
+	 */
  
-.. code-block:: guess
 
 	workflow second_pipeline {
 	    take: str_input
@@ -451,11 +386,10 @@ You can also give a name to workflows, so that you can combine them in the main 
 	    printHello(str_input.collect()).view()
 	}
 	
-/*
- * You can then invoke the different named workflows in this way
- * passing the same input channel `str` to both  
- */
-.. code-block:: guess
+	/*
+	 * You can then invoke the different named workflows in this way
+ 	* passing the same input channel `str` to both  
+ 	*/
 
 	workflow {
 	    first_pipeline(str)
@@ -468,7 +402,7 @@ We can add the **collect** operator to the second workflow that collects the out
 
 Let's run the code:
 
-.. code-block:: guess
+.. code-block:: console
 
 	nextflow run test1.nf -bg > log2
 	
@@ -500,58 +434,74 @@ Let's run the code:
 </summary>
 
 
-.. code-block:: guess
+.. code-block:: groovy
 
 	#!/usr/bin/env nextflow
+	
 	nextflow.enable.dsl=2
+	
 	str = Channel.from('hello', 'hola', 'bonjour')
+	
 	process printHello {
 	   tag { "${str_in}" }
 	   input:        
 	   val str_in
+	   
 	   output:        
 	   path("${str_in}.txt")
+	   
 	   script:        
 	   """
-	   echo ${str_in} in Italian is ciao > ${str_in}.txt
+	   	echo ${str_in} in Italian is ciao > ${str_in}.txt
 	   """
 	}
 	process printHello2 {
 	   tag { "${str_in}" }
+	   
 	   input:        
 	   val str_in
+	   
 	   output:        
 	   path("cheers.txt")
+	   
 	   script:
 	   """
-	   echo ${str_in.join(', ')} in Italian are ciao > cheers.txt
+	   	echo ${str_in.join(', ')} in Italian are ciao > cheers.txt
 	   """
 	}
+	
 	/*
 	 * A workflow can be named as a function and receive an input using the take keyword
 	 */
+	 
 	workflow first_pipeline {
+	
 	    take: str_input
+	    
 	    main:
 	    out = printHello(str_input)
-	    emit: out
-	}
-	/*
-	 * You can re-use the previous processes an combine as you prefer
-	 */
-	workflow second_pipeline {
-	    take: str_input
-	    main:
-	    out = printHello2(str_input.collect())
+	    
 	    emit: out
 	}
 	
-/*
- * You can then invoke the different named workflows in this way
- * passing the same input channel `str` to both  
- */
+	/*
+	 * You can re-use the previous processes an combine as you prefer
+	 */
+	 
+	workflow second_pipeline {
+	    take: str_input
+	    
+	    main:
+	    out = printHello2(str_input.collect())
+	    
+	    emit: out
+	}
+	
+	/*
+	 * You can then invoke the different named workflows in this way
+	 * passing the same input channel `str` to both  
+	 */
  
- .. code-block:: guess
 
 	workflow {
 	    out1 = first_pipeline(str)
@@ -569,44 +519,57 @@ Let's run the code:
 </summary>
 
 
-.. code-block:: guess
+.. code-block:: groovy
 
 	#!/usr/bin/env nextflow
+	
 	nextflow.enable.dsl=2
+	
 	str = Channel.from('hello', 'hola', 'bonjour')
+	
 	process printHello {
+	
 	   tag { "${str_in}" }
+	   
 	   input:        
 	   val str_in
+	   
 	   output:        
 	   path("${str_in[0]}.txt")
+	   
 	   script:        
 	   """
-	   echo ${str_in} in Italian is ciao > ${str_in[0]}.txt
+	   	echo ${str_in} in Italian is ciao > ${str_in[0]}.txt
 	   """
 	}
+	
 	/*
 	 * A workflow can be named as a function and receive an input using the take keyword
 	 */
+	 
 	workflow first_pipeline {
 	    take: str_input
 	    main:
 	    out = printHello(str_input)
 	    emit: out
 	}
+	
 	/*
 	 * You can re-use the previous processes an combine as you prefer
 	 */
+	 
 	workflow second_pipeline {
 	    take: str_input
 	    main:
 	    out = printHello(str_input.collect())
 	    emit: out
 	}
+	
 	/*
 	 * You can then invoke the different named workflows in this way
 	 * passing the same input channel `str` to both  
 	 */
+	 
 	workflow {
 	    out1 = first_pipeline(str)
 	    out2 = second_pipeline(str)
@@ -623,53 +586,70 @@ We can feed the channel that is generated by a process to another process in the
 
 
 
-.. code-block:: guess
+.. code-block:: groovy
 
 	#!/usr/bin/env nextflow
+	
 	nextflow.enable.dsl=2
+	
 	// the default "$baseDir/testdata/test.fa" can be overridden by using --inputfile OTHERFILENAME
 	params.inputfile = "$baseDir/testdata/test.fa"
+	
 	// the "file method" returns a file system object given a file path string  
 	sequences_file = file(params.inputfile)				
 	// check if the file exists
 	if( !sequences_file.exists() ) exit 1, "Missing genome file: ${genome_file}"
+	
 	/*
 	 * Process 1 for splitting a fasta file in multiple files
 	 */
 	process splitSequences {
+	
 	    input:
 	    path sequencesFile
+	    
 	    output:
 	    path ('seq_*')    
+	    
 	    // simple awk command
 	    script:
 	    """
-	    awk '/^>/{f="seq_"++d} {print > f}' < ${sequencesFile}
+	    	awk '/^>/{f="seq_"++d} {print > f}' < ${sequencesFile}
 	    """
 	}
+	
 	/*
 	 * Process 2 for reversing the sequences. Note the escaped AWK variables \$
 	 */
+	 
 	process reverseSequence {
-	    tag { "${seq}" }  				
+	
+	    tag { "${seq}" }  	
+	    
 	    input:
 	    path seq
+	    
 	    output:
 	    path "all.rev"
-		script:
+	    
+	    script:
 	    """
-	    cat ${seq} | awk '{if (\$1~">") {print \$0} else system("echo " \$0 " |rev")}' > all.rev
+	    	cat ${seq} | awk '{if (\$1~">") {print \$0} else system("echo " \$0 " |rev")}' > all.rev
 	    """
 	}
+	
 	workflow {
 	    splitted_seq	= splitSequences(sequences_file)
+	    
 	    // Here you have the output channel as a collection
 	    splitted_seq.view()
 	    // Here you have the same channel reshaped to send separately each value
 	    splitted_seq.flatten().view()
+	    
 	    // DLS2 allows you to reuse the channels! In past you had to create many identical
 	    // channels for sending the same kind of data to different processes
 	    rev_single_seq	= reverseSequence(splitted_seq)
+	    
 	}
 
 Here we have two simple processes:
@@ -679,7 +659,7 @@ Here we have two simple processes:
 
 The input path is fed as a parameter using the script parameters **${seq}**
 
-.. code-block:: guess
+.. code-block:: groovy
 
 	params.inputfile
 
@@ -689,7 +669,7 @@ The input path is fed as a parameter using the script parameters **${seq}**
 
 This value can be overridden when calling the script:
 
-.. code-block:: guess
+.. code-block:: console
 
 	nextflow run test1.nf --inputfile another_input.fa
 
@@ -700,7 +680,7 @@ During the execution Nextflow creates a number of temporary folders, and will th
 
 The output file is then *linked* in other folders for being used as input from other processes. <br>This avoids clashes and each process is nicely isolated from the others.
 
-.. code-block:: guess
+.. code-block:: console
 
 	nextflow run test1.nf -bg
 	N E X T F L O W  ~  version 20.07.1
@@ -715,7 +695,7 @@ The output file is then *linked* in other folders for being used as input from o
 
 We can inspect the content of `work/09/53e071*` generated by the process **splitSequences**:
 
-.. code-block:: guess
+.. code-block:: console
 
 	ls -l work/09/53e071*
 	total 24
@@ -730,7 +710,7 @@ File `test.fa` is a *soft link* to the original input.
 
 If now we inspect `work/fe/0a8640*` that is generated by the process **reverseSequence**, we see that the files generated by **splitSequences** are now linked as input.
 
-.. code-block:: guess
+.. code-block:: console
 
 	ls -l work/fe/0a8640*
 	total 8
@@ -742,16 +722,21 @@ If now we inspect `work/fe/0a8640*` that is generated by the process **reverseSe
 
 At this point we can make two different workflows to demonstrate how the new DSL allows reusing of the code.
 
-.. code-block:: guess
+.. code-block:: groovy
 
 	#!/usr/bin/env nextflow
+	
 	nextflow.enable.dsl=2
+	
 	// this can be overridden by using --inputfile OTHERFILENAME
 	params.inputfile = "$baseDir/testdata/test.fa"
+	
 	// the "file method" returns a file system object given a file path string  
-	sequences_file = file(params.inputfile)				
+	sequences_file = file(params.inputfile)		
+	
 	// check if the file exists
 	if( !sequences_file.exists() ) exit 1, "Missing genome file: ${genome_file}"
+	
 	/*
 	 * Process 1 for splitting a fasta file in multiple files
 	 */
@@ -766,32 +751,41 @@ At this point we can make two different workflows to demonstrate how the new DSL
 	    awk '/^>/{f="seq_"++d} {print > f}' < ${sequencesFile}
 	    """
 	}
+	
 	/*
 	 * Process 2 for reversing the sequences
 	 */
 	process reverseSequence {
-	    tag { "${seq}" }  				
+	    tag { "${seq}" }  	
+	    
 	    input:
 	    path seq
+	    
 	    output:
 	    path "all.rev"
-		script:
+	    
+	    script:
 	    """
-	    cat ${seq} | awk '{if (\$1~">") {print \$0} else system("echo " \$0 " |rev")}' > all.rev
+	    	cat ${seq} | awk '{if (\$1~">") {print \$0} else system("echo " \$0 " |rev")}' > all.rev
 	    """
 	}
+	
 	workflow flow1 {
 	    take: sequences
+	    
 	    main:
 	    splitted_seq        = splitSequences(sequences)
 	    rev_single_seq      = reverseSequence(splitted_seq)
 	}
+	
 	workflow flow2 {
 	    take: sequences
+	    
 	    main:
 	    splitted_seq        = splitSequences(sequences).flatten()
 	    rev_single_seq      = reverseSequence(splitted_seq)
 	}
+	
 	workflow {
 	   flow1(sequences_file)
 	   flow2(sequences_file)
@@ -802,7 +796,7 @@ The first workflow will just run like the previous script, while the second will
 
 The **reverseSequence** process of the second workflow will run in parallel if you have enough processors, or if you are running the script in a cluster environment with a scheduler supported by Nextflow.
 
-.. code-block:: guess
+.. code-block:: console
 
 	nextflow run test1.nf -bg
 	C02WX1XFHV2Q:nextflow lcozzuto$ N E X T F L O W  ~  version 20.07.1
@@ -824,7 +818,7 @@ For instance, they can affect the way a process stages in and out the input and 
 We can add the directive [`publishDir`](https://www.nextflow.io/docs/latest/process.html#publishdir) to our previous example:
 
 
-.. code-block:: guess
+.. code-block:: groovy
 
 	/*
 	 * Simple reverse the sequences
@@ -832,15 +826,18 @@ We can add the directive [`publishDir`](https://www.nextflow.io/docs/latest/proc
 
 	process reverseSequence {
 	    tag "$seq" // during the execution prints the indicated variable for follow-up
+	    
 	    publishDir "output"
+	    
 	    input:
 	    path seq 
+	    
 	    output:
 	    path "all.rev" 
 
-		script:
+	    script:
 	    """
-	    cat ${seq} | awk '{if (\$1~">") {print \$0} else system("echo " \$0 " |rev")}' > all.rev
+	    	cat ${seq} | awk '{if (\$1~">") {print \$0} else system("echo " \$0 " |rev")}' > all.rev
 	    """
 	}
 
@@ -856,7 +853,7 @@ We can also indicate what to do in case a process fails.<br>
 
 The default is to stop the pipeline and to raise an error. But we can also skip the process using the [`errorStrategy`](https://www.nextflow.io/docs/latest/process.html#errorstrategy) directive:
 
-.. code-block:: guess
+.. code-block:: groovy
 
 	errorStrategy 'ignore'
 
@@ -865,7 +862,7 @@ or retry a number of times changing something like the memory available or the m
 This time we need a number of directives:
 
 
-.. code-block:: guess
+.. code-block:: groovy
 
 	memory { 1.GB * task.attempt }
 	time { 1.hour * task.attempt }
@@ -878,8 +875,10 @@ This time we need a number of directives:
 You can resume the execution after the code modification using the parameter **-resume**. <br>
 Nextflow is smart enough to cache the execution since input and output were not changed.
 
-.. code-block:: guess
+.. code-block:: console
+
 	nextflow run test1.nf -bg -resume
+	
 	N E X T F L O W  ~  version 20.07.1
 	Launching `test1.nf` [determined_celsius] - revision: eaf5b4d673
 	[bd/f4e9a6] Cached process > flow1:splitSequences
@@ -896,7 +895,7 @@ Nextflow is smart enough to cache the execution since input and output were not 
 Sometimes you might want to resume a previous run of your pipeline. <br>
 For doing so you need to extract the job id of that run. You can do this by using the command `nextflow log`
 
-.. code-block:: guess
+.. code-block:: console
 
 	nextflow log
 	TIMESTAMP          	DURATION	RUN NAME           	STATUS	REVISION ID	SESSION ID                          	COMMAND                         
@@ -910,16 +909,19 @@ For doing so you need to extract the job id of that run. You can do this by usin
 
 You can then resume the state of your execution using the **SESSION ID**:
 
-.. code-block:: guess
+.. code-block:: console
 
 	nextflow run -resume 0a19b60d-d5fe-4a26-9e01-7a63d0a1d300 test1.nf
 
 
 Nextflow's cache can be disabled for a specific process adding setting the directive **cache** to **false**. You can also choose three caching methods:
 
-.. code-block:: guess
+.. code-block:: groovy
+
 	cache = true // (default) Cache keys are created indexing input files meta-data information (name, size and last update timestamp attributes).
+	
 	cache = 'deep' // Cache keys are created indexing input files content.
+	
 	cache = 'lenient' // (Best in HPC and shared file systems) Cache keys are created indexing input files path and size attributes
 
 
@@ -937,23 +939,29 @@ First make the process `reverseSequence` failing by creating a mistake in the co
 </summary>
 
 	
-.. code-block:: guess
+.. code-block:: groovy
+
 	/*
 	 * Broken process
 	 */
 
 	process reverseSequence {
-	    tag { "${seq}" }  				
+	
+	    tag { "${seq}" }  		
+	 
 	    publishDir "output"
+	    
 	    errorStrategy 'ignore'
+	    
 	    input:
 	    path seq 
+	    
 	    output:
 	    path "all.rev" 
 
-		script:
+	    script:
 	    """
-	    cat ${seq} | AAAAAAA '{if (\$1~">") {print \$0} else system("echo " \$0 " |rev")}' > all.rev
+	    	cat ${seq} | AAAAAAA '{if (\$1~">") {print \$0} else system("echo " \$0 " |rev")}' > all.rev
 	    """
 	}
 
@@ -969,9 +977,11 @@ Write the first workflow using pipes. Nextflow DLS2 allows you to use pipes for 
 <h5 style="background-color: #e6fadc; display: inline-block;">*Answer*</h5>
 </summary>
 
-.. code-block:: guess
+.. code-block:: groovy
+
 	workflow flow1 {
 	    take: sequences
+	    
 	    main:
 	    splitSequences(sequences) | reverseSequence | view()
 	}
