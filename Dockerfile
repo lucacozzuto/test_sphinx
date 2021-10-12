@@ -2,6 +2,8 @@ FROM sphinxdoc/sphinx
 
 WORKDIR /docs
 COPY requirements.txt /docs
+RUN pip install --upgrade pip
+
 RUN pip3 install -r requirements.txt
 
 RUN apt-get update \
@@ -12,5 +14,6 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
