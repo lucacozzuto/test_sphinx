@@ -177,6 +177,44 @@ Channel
 my_files.view()
 </pre></div>
 </div>
+<div class="highlight-Groovy notranslate"><div class="highlight"><pre><span></span><span class="cp">#!/usr/bin/env nextflow</span>
+
+<span class="c1">// enable DSL2</span>
+<span class="n">nextflow</span><span class="o">.</span><span class="na">enable</span><span class="o">.</span><span class="na">dsl</span><span class="o">=</span><span class="mi">2</span>
+
+<span class="cm">/*</span>
+<span class="cm">* Let&#39;s create the channel `my_files`</span>
+<span class="cm">* using the method fromPath</span>
+<span class="cm">*/</span>
+
+<span class="n">Channel</span>
+    <span class="o">.</span><span class="na">fromPath</span><span class="o">(</span> <span class="s2">&quot;*.txt&quot;</span> <span class="o">)</span>
+    <span class="o">.</span><span class="na">set</span> <span class="o">{</span><span class="n">my_files</span><span class="o">}</span>
+
+<span class="c1">// We can use the view() operator again to see the content of channel &quot;my_files&quot;</span>
+
+<span class="n">my_files</span><span class="o">.</span><span class="na">view</span><span class="o">()</span>
+</pre></div>
+</div>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="cp">#!/usr/bin/env nextflow</span>
+
+<span class="c1">// enable DSL2</span>
+<span class="n">nextflow</span><span class="o">.</span><span class="na">enable</span><span class="o">.</span><span class="na">dsl</span><span class="o">=</span><span class="mi">2</span>
+
+<span class="cm">/*</span>
+<span class="cm">* Let&#39;s create the channel `my_files`</span>
+<span class="cm">* using the method fromPath</span>
+<span class="cm">*/</span>
+
+<span class="n">Channel</span>
+    <span class="o">.</span><span class="na">fromPath</span><span class="o">(</span> <span class="s2">&quot;*.txt&quot;</span> <span class="o">)</span>
+    <span class="o">.</span><span class="na">set</span> <span class="o">{</span><span class="n">my_files</span><span class="o">}</span>
+
+<span class="c1">// We can use the view() operator again to see the content of channel &quot;my_files&quot;</span>
+
+<span class="n">my_files</span><span class="o">.</span><span class="na">view</span><span class="o">()</span>
+</pre></div>
+</div>
 <p>We can now execute <cite>test2.nf</cite>:</p>
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>nextflow run test2.nf
 N E X T F L O W  ~  version 20.07.1
